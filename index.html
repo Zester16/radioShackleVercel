@@ -890,14 +890,14 @@ async function updateSongtrack(stationId,streamUrl){
 }
 var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
 function startTheGame(){
-  var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
-
-       var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
-       var request = new chrome.cast.media.LoadRequest(media);}
-       castSession.loadMedia(request).then(()=>{console.log("load Succeded")},(errorCode)=>{console.log(errorCode)})
-
+  var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED
+//
+        var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
+     var request = new chrome.cast.media.LoadRequest(media);
+       castSession.loadMedia(request).then(()=>console.log("load Succeded"),(errorCode)=>console.log(errorCode))
+//
 }
-startTheGame()
+ startTheGame()
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
