@@ -888,7 +888,7 @@ async function updateSongtrack(stationId,streamUrl){
     autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
   });
 }
-fun startTheGame(){
+function startTheGame(){
   var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
      castContext.addEventListener(stateChanged, function(event){
        var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
@@ -900,7 +900,7 @@ fun startTheGame(){
      var player = new cast.framework.RemotePlayer();
   var playerController = new cast.framework.RemotePlayerController(player);
 }
-
+startTheGame()
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
