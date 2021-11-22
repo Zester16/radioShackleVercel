@@ -575,7 +575,7 @@
 
   </body>
   <!-- Exxtra scripts -->
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
+
   <script type="text/javascript" src="scripts/radioStationFinder.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -891,7 +891,8 @@ async function updateSongtrack(stationId,streamUrl){
 
 var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
    castContext.addEventListener(stateChanged, function(event){
-       var castSession = castContext.getCurrentSession();
+     var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+
        var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
        var request = new chrome.cast.media.LoadRequest(media);
 
@@ -904,7 +905,9 @@ var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
                console.log('Error: ' + error);
            });
    });
+   var player = new cast.framework.RemotePlayer();
+var playerController = new cast.framework.RemotePlayerController(player);
 
   </script>
-
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
 </html>
