@@ -870,11 +870,13 @@ async function updateSongtrack(stationId,streamUrl){
   }
 
 
-
+let castPlayer=new CastPlayer()
   window['__onGCastApiAvailable'] = function(isAvailable) {
     if (isAvailable) {
       console.log("cast Available")
+      castPlayer.initializeCastPlayer()
       initializeCastApi();
+
     }
 
     //cast
@@ -902,4 +904,5 @@ function startTheGame(){
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 </html>
