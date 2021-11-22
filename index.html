@@ -883,22 +883,24 @@ async function updateSongtrack(stationId,streamUrl){
   };
   initializeCastApi = function() {
   cast.framework.CastContext.getInstance().setOptions({
-    console.log("initialising cast API")
+
     receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
     autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
   });
 }
+fun startTheGame(){
+  var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
+     castContext.addEventListener(stateChanged, function(event){
+       var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
 
-var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
-   castContext.addEventListener(stateChanged, function(event){
-     var castSession = cast.framework.CastContext.getInstance().getCurrentSession();
+         var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
+         var request = new chrome.cast.media.LoadRequest(media);
 
-       var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
-       var request = new chrome.cast.media.LoadRequest(media);
+  castSession.loadMedia(request).then(()=>{console.log("load Succeded")},(errorCode)=>{console.log(errorCode)})
+     var player = new cast.framework.RemotePlayer();
+  var playerController = new cast.framework.RemotePlayerController(player);
+}
 
-castSession.loadMedia(request).then(()=>{console.log("load Succeded")},(errorCode)=>{console.log(errorCode)})
-   var player = new cast.framework.RemotePlayer();
-var playerController = new cast.framework.RemotePlayerController(player);
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script>
