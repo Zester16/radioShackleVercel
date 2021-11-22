@@ -876,32 +876,34 @@ async function updateSongtrack(stationId,streamUrl){
       console.log("cast Available")
       initializeCastApi();
     }
+
     //cast
-    initializeCastApi = function() {
-    cast.framework.CastContext.getInstance().setOptions({
-      //console.log("initialising cast API")
-      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-      autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-    });
-  }
 
-  var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
-     castContext.addEventListener(stateChanged, function(event){
-         var castSession = castContext.getCurrentSession();
-         var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
-         var request = new chrome.cast.media.LoadRequest(media);
-
-         castSession && castSession
-             .loadMedia(request)
-             .then(function(){
-                 console.log('Success');
-             })
-             .catch(function(error){
-                 console.log('Error: ' + error);
-             });
-     });
 
   };
+  initializeCastApi = function() {
+  cast.framework.CastContext.getInstance().setOptions({
+    //console.log("initialising cast API")
+    receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+    autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+  });
+}
+
+var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
+   castContext.addEventListener(stateChanged, function(event){
+       var castSession = castContext.getCurrentSession();
+       var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
+       var request = new chrome.cast.media.LoadRequest(media);
+
+       castSession && castSession
+           .loadMedia(request)
+           .then(function(){
+               console.log('Success');
+           })
+           .catch(function(error){
+               console.log('Error: ' + error);
+           });
+   });
 
   </script>
 
