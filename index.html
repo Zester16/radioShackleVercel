@@ -895,8 +895,7 @@ function startTheGame(){
        var media = new chrome.cast.media.MediaInfo('https://22253.live.streamtheworld.com/ONE_FM_913.mp3', 'audio/mp3');
        var request = new chrome.cast.media.LoadRequest(media);}
        castSession.loadMedia(request).then(()=>{console.log("load Succeded")},(errorCode)=>{console.log(errorCode)})
-     var player = new cast.framework.RemotePlayer();
-  var playerController = new cast.framework.RemotePlayerController(player);
+
 }
 startTheGame()
 
