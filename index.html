@@ -705,7 +705,7 @@
 
   //initialising cast castSession
 
- async function  initializeCastApi () {
+  initializeCastApi = async function() {
   cast.framework.CastContext.getInstance().setOptions({
       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
     });
@@ -716,7 +716,7 @@
    castPlayerController = new cast.framework.RemotePlayerController(player);}
 
   //takes care of radio selection
-  btnOnClick.forEach((button)=>{
+  btnOnClick.forEach(async (button)=>{
       let streamUrl=null
       await initializeCastApi()
       button.addEventListener("click",()=>{
