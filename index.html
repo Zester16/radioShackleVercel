@@ -737,7 +737,7 @@
               startRadioCast(currentStation.url)
             }
             else{audioPlayer.src=currentStation.url}
-            initialiseCastApi()
+            initializeCastApi()
             stationName.innerText=`${currentStation.name}`
             stationLogo.src=currentStation.logo
             clearTimeout(updateSongtrack);
