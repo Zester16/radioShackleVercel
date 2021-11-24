@@ -718,6 +718,7 @@
   //takes care of radio selection
   btnOnClick.forEach((button)=>{
       let streamUrl=null
+      initializeCastApi()
       button.addEventListener("click",()=>{
         if (intervalID) {
         clearTimeout(intervalID);
