@@ -764,7 +764,7 @@
 
   //cast playerController
   async function  startRadioOnCast(streamUrl){
-    await initializeCastApi()
+    initializeCastApi()
     if(castSession){
       console.log(streamUrl)
         var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
