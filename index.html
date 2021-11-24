@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
       <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-     
+
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -57,6 +57,12 @@
         padding-left: 2px;
         margin:2px;
         visibility: visible;
+      }
+
+      /* Cast Logo */
+      #google_cast_logo{
+        height:30px;
+        width:30px
       }
       /* Styling for brand name */
         .brand_name{
@@ -466,8 +472,12 @@
     <div class="brand_name">
 
       <span>Radio Shackle</span>
+      <div id="google_cast_logo">
+          <google-cast-launcher></google-cast-launcher>
+      </div>
+
     </div>
-<google-cast-launcher></google-cast-launcher>
+
 
     <!-- Displays details of current track being played -->
 
@@ -712,12 +722,17 @@
           audioPlayer.src=""
           if(allStations[station]){
             var currentStation=allStations[station]
-            audioPlayer.src=currentStation.url
+
             stationName.innerText=`${currentStation.name}`
             stationLogo.src=currentStation.logo
             clearTimeout(updateSongtrack);
             isStreamAvailable=currentStation.stream
             intervalID=setInterval(updateSongtrack,3000,currentStation.id,currentStation.stream);
+            if(castSession){
+              startRadioCast(currentStation.url)
+            }
+            else{audioPlayer.src=currentStation.url}
+
     //code goes here that will be run every 5 seconds.,
 
 
@@ -873,11 +888,8 @@ async function updateSongtrack(stationId,streamUrl){
   }
 
 
-
-
-  </script>
-
-  <script type="text/javascript">
+  var castSession
+  var  playerController
   //let castPlayer=new CastPlayer()
     window['__onGCastApiAvailable'] = function(isAvailable) {
       if (isAvailable) {
@@ -886,20 +898,39 @@ async function updateSongtrack(stationId,streamUrl){
         initializeCastApi();
 
       }
+      initializeCastApi = async function() {
+      cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+        });
 
+      };
+      //
+      async function initialiseCastVariables(){
+        castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
+        var player = new cast.framework.RemotePlayer();
+       var controller = new cast.framework.RemotePlayerController(player);
+      }
       //cast
 
 
     };
+    async function  startRadioCast(streamUrl){
+      await initializeCastApi()
+      if(castSession){
+        console.log(streamUrl)
+          var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
+         var request = await new chrome.cast.media.LoadRequest(mediaInfo);
+          if(castSession){
+            castSession.loadMedia(request).then(
+              function() { console.log('Load succeed'); },
+              function(errorCode) { console.log('Error code: ' + errorCode); });
+              var player = await new cast.framework.RemotePlayer();
+              playerController = await new cast.framework.RemotePlayerController(player);
 
-    initializeCastApi = async function() {
-
-  await   cast.framework.CastContext.getInstance().setOptions({
-      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-      autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-    });
-    console.log("inside initialise API")
+      }
+    }
   }
-  <!-- <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" ></script> -->
-  <!-- <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script> -->
+
+  </script>
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 </html>
