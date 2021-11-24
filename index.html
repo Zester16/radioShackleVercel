@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-
-
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <link rel="icon" type="image/png"  href="svg_and_images\radio_shackle.png">
@@ -17,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <!-- For Favourites header ROBOTO -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <!-- chromecast -->
 
     <!-- For Station name in station selection -->
     <!--font-family: 'Noto Sans KR', sans-serif; -->
@@ -57,12 +53,6 @@
         padding-left: 2px;
         margin:2px;
         visibility: visible;
-      }
-
-      /* Cast Logo */
-      #google_cast_logo{
-        height:30px;
-        width:30px
       }
       /* Styling for brand name */
         .brand_name{
@@ -472,10 +462,7 @@
     <div class="brand_name">
 
       <span>Radio Shackle</span>
-      <div id="google_cast_logo">
-        <google-cast-launcher></google-cast-launcher>
-      </div>
-
+      <span><google-cast-launcher></google-cast-launcher></span>
     </div>
 
 
@@ -485,8 +472,6 @@
     <!-- APSD -->
 
   </div>
-  <google-cast-launcher id="castbutton"></google-cast-launcher>
-
   <!-- Radio Station Introduction -->
   <div class="info_radio_shackle">
     <p>Welcome to Radio Shackle!!!!</p>
@@ -588,10 +573,8 @@
 
   </body>
   <!-- Exxtra scripts -->
-
   <script type="text/javascript" src="scripts/radioStationFinder.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
   <script>
   //this is main object containing all radio sattions
   let allStations={
@@ -623,18 +606,7 @@
     jazz_fm_rm:{id:"jazz_fm_rm",name:"Jazz FM", country:"Romania",background:"white",fav:false,url:"https://s4.radio.co/s1e25bf273/listen",logo:"https://jazzfm.ro/assets/images/assets_logo.svg",stream:null},
     radio_klassik_backup:{id:"radio_klassik_backup",name:"Radio Klassik BKP", country:"Germany",background:"white",fav:false,url:"https://edge02.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?"},
 }
-//let castPlayer=new CastPlayer()
-  window['__onGCastApiAvailable'] = function(isAvailable) {
-    if (isAvailable) {
-      console.log("cast Available")
-      //castPlayer.initializeCastPlayer()
-      initializeCastApi();
 
-    }  };
-
-    //cast initialiseCastVariables
-    var castSession
-    var  playerController
   //dynamically creating radio allStations
   let mainRadioDiv=document.querySelector(".radio_stations_body")
   let mainRadioDivDark=document.querySelector(".radio_stations_body_dark")
@@ -683,7 +655,12 @@
       favRadioDiv.appendChild(newStation)
     }
 
-
+    //initialising cast buttons
+    window['__onGCastApiAvailable'] = function(isAvailable) {
+  if (isAvailable) {
+    initializeCastApi();
+  }
+}
   }
   // initialisi9ng variable for bu8tton and audio player
   let btnOnClick=document.querySelectorAll(".play_radio")
@@ -716,13 +693,29 @@
   //check whether song is being displayed
   let isSongDisplaying=false;
   let isStreamAvailable=null;
+
+  //cast variables
+  let castSession;
+  let castPlayerController;
+
   //play status constats
   const NOT_PLAYING=0;
   const PLAYING=1;
   const ERINPLAYING=2;
+
+  //initialising cast castSession
+
+  initializeCastApi = async function() {
+  cast.framework.CastContext.getInstance().setOptions({
+      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+    });
+   castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
+   let player = new cast.framework.RemotePlayer();
+   castPlayerController = new cast.framework.RemotePlayerController(player);}
+
   //takes care of radio selection
   btnOnClick.forEach((button)=>{
-
+      let streamUrl=null
       button.addEventListener("click",()=>{
         if (intervalID) {
         clearTimeout(intervalID);
@@ -731,21 +724,16 @@
          station=button.id
         audioPlayer.pause();
           audioPlayer.src=""
+          //assigning radio station
           if(allStations[station]){
             var currentStation=allStations[station]
-            if(castSession){
-              startRadioCast(currentStation.url)
-            }
-            else{audioPlayer.src=currentStation.url}
-            initializeCastApi()
+            audioPlayer.src=currentStation.url
+            streamUrl=currentStation.url
             stationName.innerText=`${currentStation.name}`
             stationLogo.src=currentStation.logo
             clearTimeout(updateSongtrack);
             isStreamAvailable=currentStation.stream
             intervalID=setInterval(updateSongtrack,3000,currentStation.id,currentStation.stream);
-            console.log(castSession)
-
-
     //code goes here that will be run every 5 seconds.,
 
 
@@ -759,9 +747,31 @@
             isPlaying=true;
             footer.style.visibility="visible"
             playButtonDesign();
-        audioPlayer.play();
+            if(castSession){
+              startRadioOnCast(streamUrl)
+            }
+            else{
+            audioPlayer.play();
+            }
+
         })
   })
+
+  //cast playerController
+  async function  startRadioOnCast(streamUrl){
+    await initializeCastApi()
+    if(castSession){
+      console.log(streamUrl)
+        var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
+       var request = await new chrome.cast.media.LoadRequest(mediaInfo);
+        if(castSession){
+          castSession.loadMedia(request).then(
+            function() { console.log('Load succeed'); },
+            function(errorCode) { console.log('Error code: ' + errorCode); });
+            var player = await new cast.framework.RemotePlayer();
+            castPlayerController= await new cast.framework.RemotePlayerController(player);
+
+    }
   //error Status
   function buttonVisiblity(status){
 
@@ -898,44 +908,6 @@ async function updateSongtrack(stationId,streamUrl){
     nowPlaying.visibility='collapse'
     nowPlaying.style.height='0px'
     upButton.classList.add("song_details_button_rotate")
-  }
-
-
-
-
-      initializeCastApi = async function() {
-      cast.framework.CastContext.getInstance().setOptions({
-          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
-        });
-        castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
-        await initialiseCastVariables()
-      //
-
-
-
-
-    };
-    //cast
-    async function initialiseCastVariables(){
-      castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
-      var player = new cast.framework.RemotePlayer();
-     var controller = new cast.framework.RemotePlayerController(player);
-    }
-    async function  startRadioCast(streamUrl){
-      await initializeCastApi()
-      if(castSession){
-        console.log(streamUrl)
-          var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
-         var request = await new chrome.cast.media.LoadRequest(mediaInfo);
-          if(castSession){
-            castSession.loadMedia(request).then(
-              function() { console.log('Load succeed'); },
-              function(errorCode) { console.log('Error code: ' + errorCode); });
-              var player = await new cast.framework.RemotePlayer();
-              playerController = await new cast.framework.RemotePlayerController(player);
-
-      }
-    }
   }
 
   </script>
