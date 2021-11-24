@@ -631,6 +631,10 @@
       initializeCastApi();
 
     }  };
+
+    //cast initialiseCastVariables
+    var castSession
+    var  playerController
   //dynamically creating radio allStations
   let mainRadioDiv=document.querySelector(".radio_stations_body")
   let mainRadioDivDark=document.querySelector(".radio_stations_body_dark")
@@ -896,8 +900,7 @@ async function updateSongtrack(stationId,streamUrl){
   }
 
 
-  var castSession
-  var  playerController
+
 
       initializeCastApi = async function() {
       cast.framework.CastContext.getInstance().setOptions({
