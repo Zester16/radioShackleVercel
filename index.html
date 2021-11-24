@@ -735,6 +735,7 @@
             clearTimeout(updateSongtrack);
             isStreamAvailable=currentStation.stream
             intervalID=setInterval(updateSongtrack,3000,currentStation.id,currentStation.stream);
+            console.log(castSession)
             if(castSession){
               startRadioCast(currentStation.url)
             }
@@ -902,7 +903,7 @@ async function updateSongtrack(stationId,streamUrl){
       cast.framework.CastContext.getInstance().setOptions({
           receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
         });
-        initialiseCastVariables()
+        await initialiseCastVariables()
       //
 
 
