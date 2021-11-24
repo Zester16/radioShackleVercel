@@ -752,10 +752,11 @@
             playButtonDesign();
             castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
             if(castSession){
+              audioPlayer.pause()
               startRadioOnCast(streamUrl)
             }
             else{
-            //audioPlayer.play();
+            audioPlayer.play();
             }
 
         })
