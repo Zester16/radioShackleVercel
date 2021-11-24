@@ -706,19 +706,19 @@
   //initialising cast castSession
 
   initializeCastApi = async function() {
-  cast.framework.CastContext.getInstance().setOptions({
+   cast.framework.CastContext.getInstance().setOptions({
       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
     });
     console.log("initialising Cast")
-   castSession =  await cast.framework.CastContext.getInstance().getCurrentSession();
+   castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
    console.log("init"+castSession)
    let player = new cast.framework.RemotePlayer();
    castPlayerController = new cast.framework.RemotePlayerController(player);}
 
   //takes care of radio selection
-  btnOnClick.forEach(async (button)=>{
+  btnOnClick.forEach( (button)=>{
       let streamUrl=null
-      await initializeCastApi()
+      initializeCastApi()
       button.addEventListener("click",()=>{
         if (intervalID) {
         clearTimeout(intervalID);
@@ -750,6 +750,7 @@
             isPlaying=true;
             footer.style.visibility="visible"
             playButtonDesign();
+            castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
             if(castSession){
               startRadioOnCast(streamUrl)
             }
