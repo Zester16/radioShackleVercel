@@ -897,13 +897,11 @@ async function updateSongtrack(stationId,streamUrl){
         //castPlayer.initializeCastPlayer()
         initializeCastApi();
 
-      }
+      }  };
       initializeCastApi = async function() {
       cast.framework.CastContext.getInstance().setOptions({
           receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
         });
-
-      };
       //
       async function initialiseCastVariables(){
         castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
