@@ -733,17 +733,18 @@
           audioPlayer.src=""
           if(allStations[station]){
             var currentStation=allStations[station]
-
+            if(castSession){
+              startRadioCast(currentStation.url)
+            }
+            else{audioPlayer.src=currentStation.url}
+            initialiseCastApi()
             stationName.innerText=`${currentStation.name}`
             stationLogo.src=currentStation.logo
             clearTimeout(updateSongtrack);
             isStreamAvailable=currentStation.stream
             intervalID=setInterval(updateSongtrack,3000,currentStation.id,currentStation.stream);
             console.log(castSession)
-            if(castSession){
-              startRadioCast(currentStation.url)
-            }
-            else{audioPlayer.src=currentStation.url}
+
 
     //code goes here that will be run every 5 seconds.,
 
