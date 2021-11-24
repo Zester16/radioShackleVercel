@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-  
+
 
     </script>
     <meta charset="utf-8">
@@ -902,16 +902,19 @@ async function updateSongtrack(stationId,streamUrl){
       cast.framework.CastContext.getInstance().setOptions({
           receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
         });
+        initialiseCastVariables()
       //
-      async function initialiseCastVariables(){
-        castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
-        var player = new cast.framework.RemotePlayer();
-       var controller = new cast.framework.RemotePlayerController(player);
-      }
-      //cast
+
+
 
 
     };
+    //cast
+    async function initialiseCastVariables(){
+      castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
+      var player = new cast.framework.RemotePlayer();
+     var controller = new cast.framework.RemotePlayerController(player);
+    }
     async function  startRadioCast(streamUrl){
       await initializeCastApi()
       if(castSession){
