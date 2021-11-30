@@ -822,21 +822,29 @@
     //initializeCastApi()
     refreshCastVariables()
 
-    if(isPlaying)
+
       //isPlaying=false;
       if(castSession){
-        castPlayerController.playOrPause()
+          castPlayerControllerforAudio()
       }
       else{
-        audioPlayer.pause()
+        if(isPlaying){audioPlayer.pause()
+          else audioPlayer.play();
       }
 
-
-    else audioPlayer.play();
 
 
 
   })
+
+  ///controlling play button for audio player for cast 
+  function castPlayerControllerforAudio(){
+    castPlayerController.playOrPause()
+    isPlaying=!isPlaying
+    playButtonDesign()
+
+
+  }
   //audio player pause event listener, when someone pauses from button or bluetooth
   audioPlayer.addEventListener('pause',()=>{
     console.log("Radio Paused")
