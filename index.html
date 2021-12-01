@@ -605,7 +605,7 @@
     bloomberg_fm:{id:"bloomberg_fm",name:"Bloomberg Radio", country:"USA",background:"white",fav:true,url:"https://24423.live.streamtheworld.com/WBBRAMAAC48.aac",logo:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png",stream:null},
     bloomberg_fm_backup:{id:"bloomberg_fm_backup",name:"Bloomberg Backup", country:"USA",background:"white",url:"https://18843.live.streamtheworld.com/WBBRAMAAC48.aac",logo:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png",stream:null},
     max_fm_1039:{id:"max_fm_1039",name:"Max FM 103.9", country:"Canada",background:"dark",url:"https://mbsradio.leanstream.co/CFQMFM-MP3",logo:"https://1039maxfm.com/wp-content/uploads/sites/8/2021/02/MAX103-color.png",stream:null},
-    radio_bern_1:{id:"radio_bern_1",name:"Radio Bern 1", country:"Swiss",background:"white",fav:true,url:"https://mp3.radiobern1.ch/radiobern1128k", logo:"https://radioshackle-sjqq3.ondigitalocean.app/svg_and_images/radiobern1.png",stream:"https://www.radiobern1.ch/api/pub/gql/radiobern/AudioLiveData/e8ed774ebb6a811303ea3ff7078581730ff3914c?ttl=10&variables=%7B%22streamName%22%3A%22radiobern.main%22%7D"},
+    radio_bern_1:{id:"radio_bern_1",name:"Radio Bern 1", country:"Swiss",background:"white",fav:true,url:"https://mp3.radiobern1.ch/radiobern1128k", logo:"svg_and_images/radiobern1.png",stream:"https://www.radiobern1.ch/api/pub/gql/radiobern/AudioLiveData/e8ed774ebb6a811303ea3ff7078581730ff3914c?ttl=10&variables=%7B%22streamName%22%3A%22radiobern.main%22%7D"},
     radio_klassik:{id:"radio_klassik",name:"Radio Klassik", country:"Germany",background:"white",fav:true,url:"https://edge52.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?"},
     radio_rundfunk_914:{id:"radio_rundfunk_914",name:"Berliner Rundfunk 91.4", country:"Germany",background:"white",fav:false,url:"https://stream.berliner-rundfunk.de/brf/mp3-128/internetradio", logo:"https://www.berliner-rundfunk.de//_nuxt/3e020671c5416fa80e6b805f4364f376.svg",stream:"https://top-stream-service.loverad.io/v1/br?"},
     vradio_lebanon_fm:{id:"vradio_lebanon_fm",name:"Lebanon 89.5", country:"Lebanon",background:"virgin",fav:false,url:"http://node-26.zeno.fm/dwxw3p9vea0uv?rj-ttl=5&rj-tok=AAABdfuFcQ4AHao1lT3WKsmr6g",logo:"https://virginradiolb.com/assets/themes/TriTheme/images/logo.png",stream:null},
@@ -950,8 +950,7 @@ async function updateSongtrack(stationId,streamUrl){
     upButton.classList.add("song_details_button_rotate")
   }
   //cast controller media function
-  castPlayerController.addEventListener(
-  cast.framework.RemotePlayerEventType.MEDIA_INFO_CHANGED, function() {
+  castPlayerController.addEventListener(cast.framework.RemotePlayerEventType.MEDIA_INFO_CHANGED, function() {
     // Use the current session to get an up to date media status.
     let session = cast.framework.CastContext.getInstance().getCurrentSession();
 
@@ -972,6 +971,19 @@ async function updateSongtrack(stationId,streamUrl){
     console.log(mediaInfo)
   });
 
+  castSession.addEventListener(
+    cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
+    function(event) {
+      switch (event.sessionState) {
+        case cast.framework.SessionState.SESSION_STARTED:console.log('CastContext: Started');
+        case cast.framework.SessionState.SESSION_RESUMED:console.log('CastContext: CastSession Resumed');
+          break;
+        case cast.framework.SessionState.SESSION_ENDED:
+          console.log('CastContext: CastSession disconnected');
+          // Update locally as necessary
+          break;
+      }
+    })
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
