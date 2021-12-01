@@ -523,7 +523,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 10.03
+    version: 10.05
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -585,11 +585,12 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
   //this is main object containing all radio sattions
+
   let allStations={
     one_fm_913:{id:"one_fm_913",name:"One FM 913",country:"singapore",background:"white",fav:true,url:"https://22253.live.streamtheworld.com/ONE_FM_913.mp3",logo:"https://www.onefm.sg/wp-content/assets/3/img/NAV_01_Logo_913-new.svg",stream:null},
     money_fm_893:{id:"money_fm_893",name:"Money FM 893",country:"singapore",background:"white",fav:false,url:"https://22253.live.streamtheworld.com/MONEY_893.mp3",logo:"https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg",stream:null},
     nrj_zurich_109:{id:"nrj_zurich_109",name:"Energy Zurich 109",country:"Swiss",background:"white",fav:false,url:"https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3", logo:"https://upload.wikimedia.org/wikipedia/en/5/54/Logo_NRJ_2016.png",stream:null},
-    q_fm_102:{id:"q_fm_102",name:"Dublins Q102",country:"Ireland",background:"white",fav:true,url:"https://wg.cdn.tibus.net/q102MP3128", logo:"https://mm.aiircdn.com/614/5d5fcba7241c4.png",stream:"https://www.q102.ie/radiofeed_request/?a=newer"},
+    q_fm_102:{id:"q_fm_102",name:"Dublins Q102",country:"Ireland",background:"white",fav:true,url:"https://wg.cdn.tibus.net/q102MP3128", logo:"https://mm.aiircdn.com/614/5d5fcba7241c4.png",stream:null},
     wrs_fm:{id:"wrs_fm",name:"World Rasio Swiss",country:"Swiss",background:"white",fav:false,url:"https://streamingr.broadcastradio.com:10295/wrs",logo:"https://mm.aiircdn.com/45/581c75ebd31ac.png",stream:null},
     sunny_fm_102:{id:"sunny_fm_102",name:"Sunny FM",country:"Utah, USA",background:"white",fav:false,url:"https://ice10.securenetsystems.net/KCLS", logo:"https://mysunny1015.com/wp-content/uploads/2019/03/logo-kcls-sunny-1015-dark-light.png",stream:null},
     rosj_fm_96:{id:"rosj_fm_96",name:"Rock of St George Utah",country:"Utah, USA",background:"dark",fav:false,url:"https://ice41.securenetsystems.net/KCLSHD2",logo:"https://rockstgeorge.com/wp-content/uploads/2019/03/logo-96X-rock-dark-light.png",stream:null},
@@ -724,18 +725,27 @@
    castPlayerController = new cast.framework.RemotePlayerController(player);}
 
    //refrest cast variables
+
    function refreshCastVariables(){
-     console.log("refreshing cast variables")
-     castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
-     let player = new cast.framework.RemotePlayer();
-     castPlayerController = new cast.framework.RemotePlayerController(player);
-     if(castSession){
-       mediaStatus = castSession.getMediaSession();
-       console.log(mediaStatus)
+     try {
+       console.log("refreshing cast variables")
+
+         castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+         let player = new cast.framework.RemotePlayer();
+         castPlayerController = new cast.framework.RemotePlayerController(player);
+         if(castSession){
+           mediaStatus = castSession.getMediaSession();
+           console.log(mediaStatus)
+
      }
 
-
-   }
+  } catch (error) {
+    console.error(error);
+    castSession=null
+    // expected output: ReferenceError: nonExistentFunction is not defined
+    // Note - error messages will vary depending on browser
+  }
+}
   //takes care of radio selection
   btnOnClick.forEach( (button)=>{
       let streamUrl=null
@@ -751,38 +761,44 @@
           //assigning radio station
           if(allStations[station]){
             var currentStation=allStations[station]
-            audioPlayer.src=currentStation.url
+            //audioPlayer.src=currentStation.url
+            stationName.innerText=""
             streamUrl=currentStation.url
-            stationName.innerText=`${currentStation.name}`
-            stationLogo.src=currentStation.logo
-            clearTimeout(updateSongtrack);
-            isStreamAvailable=currentStation.stream
-            intervalID=setInterval(updateSongtrack,3000,currentStation.id,currentStation.stream);
-    //code goes here that will be run every 5 seconds.,
-
-
+            setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
             }
             else{
-              audioPlayer.src="https://wg.cdn.tibus.net/q102MP3128"
-
-            }
-            buttonVisiblity(PLAYING)
+              audioPlayer.src="https://wg.cdn.tibus.net/q102MP3128" }
             console.log(`${allStations[station].id}`)
-            isPlaying=true;
-            footer.style.visibility="visible"
-            playButtonDesign();
-            castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+            refreshCastVariables()
+            //castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
             if(castSession){
               audioPlayer.pause()
               startRadioOnCast(streamUrl)
               //initializeCastApi()
             }
             else{
+            audioPlayer.src=streamUrl
             audioPlayer.play();
             }
 
         })
   })
+//setting up of footer station and details
+
+function setStationDetails(stationID,radioStationName,radioStationLogo,stationStream){
+  console.log("SETRADIODETAILS "+stationLogo)
+
+  stationName.innerText =radioStationName
+  //
+  clearTimeout(updateSongtrack);
+  stationLogo.src =radioStationLogo
+  isStreamAvailable=stationStream
+  intervalID=setInterval(updateSongtrack,3000,stationID,stationStream);
+  buttonVisiblity(PLAYING)
+  isPlaying=true;
+  footer.style.visibility="visible"
+  playButtonDesign();
+}
 
   //cast playerController
   async function  startRadioOnCast(streamUrl){
@@ -837,9 +853,6 @@
         if(isPlaying){audioPlayer.pause()}
           else audioPlayer.play();
       }
-
-
-
 
   })
 
@@ -955,41 +968,8 @@ async function updateSongtrack(stationId,streamUrl){
     nowPlaying.style.height='0px'
     upButton.classList.add("song_details_button_rotate")
   }
-  //cast controller media function
-  castPlayerController.addEventListener(cast.framework.RemotePlayerEventType.MEDIA_INFO_CHANGED, function() {
-    // Use the current session to get an up to date media status.
-    let session = cast.framework.CastContext.getInstance().getCurrentSession();
 
-    if (!session) {
-        return;
-    }
 
-    // Contains information about the playing media including currentTime.
-    let mediaStatus = session.getMediaSession();
-    if (!mediaStatus) {
-        return;
-    }
-    else{console.log(mediaStatus)}
-
-    // mediaStatus also contains the mediaInfo containing metadata and other
-    // information about the in progress content.
-    let mediaInfo = mediaStatus.media;
-    console.log(mediaInfo)
-  });
-
-  castSession.addEventListener(
-    cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
-    function(event) {
-      switch (event.sessionState) {
-        case cast.framework.SessionState.SESSION_STARTED:console.log('CastContext: Started');
-        case cast.framework.SessionState.SESSION_RESUMED:console.log('CastContext: CastSession Resumed');
-          break;
-        case cast.framework.SessionState.SESSION_ENDED:
-          console.log('CastContext: CastSession disconnected');
-          // Update locally as necessary
-          break;
-      }
-    })
 
   </script>
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
