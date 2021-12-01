@@ -772,13 +772,13 @@
             refreshCastVariables()
             //castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
             if(castSession){
-              
+
               startRadioOnCast(streamUrl)
               //initializeCastApi()
             }
             else{
             audioPlayer.src=streamUrl
-            audioPlayer.play();
+            //audioPlayer.play();
             }
 
         })
