@@ -338,7 +338,7 @@
         margin: 0;
         font-size: 2em;
         /* for making screen size relative */
-        padding-top:10%;
+        padding-top:20%;
         padding-bottom: 30%;
 
       }
@@ -688,6 +688,7 @@
   let nowPlayingSongArtist=document.querySelector("#now_playing_song_artist")
   let nowPlayingRadioShow=document.querySelector("#now_radio_show")
   let station=null;
+  let radioStationName=null;
   let intervalID=null;
   footer.style.visibility="collapse"
   nowPlaying.style.height='0px'
@@ -785,10 +786,10 @@
   })
 //setting up of footer station and details
 
-function setStationDetails(stationID,radioStationName,radioStationLogo,stationStream){
+function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream){
   console.log("SETRADIODETAILS "+stationLogo)
-
-  stationName.innerText =radioStationName
+  radioStationName=cradioStationName
+  stationName.innerText =cradioStationName
   //
   clearTimeout(updateSongtrack);
   stationLogo.src =radioStationLogo
@@ -827,7 +828,7 @@ function setStationDetails(stationID,radioStationName,radioStationLogo,stationSt
   // Audio player error Handeling
   audioPlayer.addEventListener('error',(error)=>{
     let code=error.target.error.code
-    let radioStation=stationName.innerText
+    let radioStation=radioStationName
     if(code===4){
       buttonVisiblity(ERINPLAYING)
       alert(`Currently ${radioStation} is not available`)
