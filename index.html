@@ -523,7 +523,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 10.05
+    version: 10.06
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -716,14 +716,21 @@
   //initialising cast castSession
 
   initializeCastApi = async function() {
-   cast.framework.CastContext.getInstance().setOptions({
-      receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
-    });
-    console.log("initialising Cast")
-   castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
-   console.log("init"+castSession)
-   let player = new cast.framework.RemotePlayer();
-   castPlayerController = new cast.framework.RemotePlayerController(player);}
+  try{
+
+    cast.framework.CastContext.getInstance().setOptions({
+       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+     });
+     console.log("initialising Cast")
+    castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+    console.log("init"+castSession)
+    let player = new cast.framework.RemotePlayer();
+    castPlayerController = new cast.framework.RemotePlayerController(player); }
+    catch (error) {
+     console.error(error);
+
+ }
+}
 
    //refrest cast variables
 
@@ -742,7 +749,7 @@
 
   } catch (error) {
     console.error(error);
-    
+
     // expected output: ReferenceError: nonExistentFunction is not defined
     // Note - error messages will vary depending on browser
   }
@@ -771,6 +778,7 @@
               audioPlayer.src="https://wg.cdn.tibus.net/q102MP3128" }
             console.log(`${allStations[station].id}`)
             refreshCastVariables()
+            console.log(castSession)
             //castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
             if(castSession){
 
@@ -842,8 +850,8 @@ function setStationDetails(stationID,cradioStationName,radioStationLogo,stationS
   })
   ///Top bar  Button Play Status
   btnTopBar.addEventListener('click',()=>{
-    //initializeCastApi()
-    refreshCastVariables()
+    initializeCastApi()
+    //refreshCastVariables()
 
 
       //isPlaying=false;
@@ -851,8 +859,14 @@ function setStationDetails(stationID,cradioStationName,radioStationLogo,stationS
           castPlayerControllerforAudio()
       }
       else{
-        if(isPlaying){audioPlayer.pause()}
-          else audioPlayer.play();
+        if(isPlaying){
+          audioPlayer.pause()
+          audioPlayerPause()
+          console.log("play button condition :"+isPlaying)
+        }
+          else {audioPlayer.play();}
+          //console.log("play button condition :"+isPlaying)
+
       }
 
   })
@@ -862,14 +876,17 @@ function setStationDetails(stationID,cradioStationName,radioStationLogo,stationS
     castPlayerController.playOrPause()
     isPlaying=!isPlaying
     playButtonDesign()
-
+}
+  //audip player pauses
+  function audioPlayerPause(){
+    console.log("Radio Paused")
+    isPlaying=false;
+    playButtonDesign();
 
   }
   //audio player pause event listener, when someone pauses from button or bluetooth
   audioPlayer.addEventListener('pause',()=>{
-    console.log("Radio Paused")
-    isPlaying=false;
-    playButtonDesign();
+    audioPlayerPause()
   })
   //audio player play event listener when someone plays radio from button or bluetooth
   audioPlayer.addEventListener("play",()=>{
