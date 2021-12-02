@@ -996,8 +996,8 @@
 }
   ///controlling play button for audio player for cast
   function castPlayerControllerforAudio(){
-    console.log("Cast Player "+isPlaying)
-    initializeCastApi()
+    console.log("Cast Player "+isPlaying+castPlayerController)
+    refreshCastVariables()
     castPlayerController.playOrPause()
     isPlaying=!isPlaying
     playButtonDesign()
