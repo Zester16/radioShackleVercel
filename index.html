@@ -721,7 +721,7 @@
     cast.framework.CastContext.getInstance().setOptions({
        receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
      });
-     
+
      console.log("initialising Cast")
     castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
     console.log("init"+castSession)
@@ -821,8 +821,8 @@
 
       ///Top bar  Button Play Status
       btnTopBar.addEventListener('click',()=>{
-        initializeCastApi()
-        //refreshCastVariables()
+        //initializeCastApi()
+        refreshCastVariables()
           //isPlaying=false;
           if(castSession){
               castPlayerControllerforAudio()
@@ -997,7 +997,7 @@
   ///controlling play button for audio player for cast
   function castPlayerControllerforAudio(){
     console.log("Cast Player "+isPlaying+castPlayerController)
-    refreshCastVariables()
+    //refreshCastVariables()
     castPlayerController.playOrPause()
     isPlaying=!isPlaying
     playButtonDesign()
