@@ -754,6 +754,7 @@
     // Note - error messages will vary depending on browser
   }
 }
+//********************RADIO PLAYER FUNCTIONS*************************//
   //takes care of radio selection
   btnOnClick.forEach( (button)=>{
       let streamUrl=null
@@ -792,24 +793,189 @@
 
         })
   })
-//setting up of footer station and details
+      //setting up of footer station and details
 
-function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream){
-  console.log("SETRADIODETAILS "+stationLogo)
-  radioStationName=cradioStationName
-  stationName.innerText =cradioStationName
-  //
-  clearTimeout(updateSongtrack);
-  stationLogo.src =radioStationLogo
-  isStreamAvailable=stationStream
-  intervalID=setInterval(updateSongtrack,3000,stationID,stationStream);
-  buttonVisiblity(PLAYING)
-  isPlaying=true;
-  footer.style.visibility="visible"
-  playButtonDesign();
-}
+      function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream){
+        console.log("SETRADIODETAILS "+stationLogo)
+        radioStationName=cradioStationName
+        stationName.innerText =cradioStationName
+        //
+        clearTimeout(updateSongtrack);
+        stationLogo.src =radioStationLogo
+        isStreamAvailable=stationStream
+        intervalID=setInterval(updateSongtrack,3000,stationID,stationStream);
+        buttonVisiblity(PLAYING)
+        isPlaying=true;
+        footer.style.visibility="visible"
+        playButtonDesign();
+      }
+      //error Status
+      function buttonVisiblity(status){
 
-  //cast playerController
+        if(status===NOT_PLAYING){btnTopBar.style.visibility="hidden"}
+        if(status===PLAYING){btnTopBar.style.visibility="visible"}
+        if(status===ERINPLAYING){btnTopBar.style.visibility="hidden"}
+      }
+
+      ///Top bar  Button Play Status
+      btnTopBar.addEventListener('click',()=>{
+        initializeCastApi()
+        //refreshCastVariables()
+          //isPlaying=false;
+          if(castSession){
+              castPlayerControllerforAudio()
+          }
+          else{
+            if(isPlaying){
+              audioPlayer.pause()
+              audioPlayerPause()
+              console.log("play button condition :"+isPlaying)
+            }
+              else {audioPlayer.play();}
+              //console.log("play button condition :"+isPlaying)
+
+          }
+
+      })
+
+
+      //play button design
+      function playButtonDesign(){
+        if(isPlaying){
+          btnTopBar.innerHTML="II"
+        }
+        else{
+          btnTopBar.innerHTML=">"
+        }
+      }
+      /******** Mute Button Functions ********/
+      //Mute Functionality for Button
+      //Mute Functionality
+      btnMute.addEventListener("click",()=>{
+        if(isMute){
+          audioPlayer.muted=false;
+        }
+        else{
+          audioPlayer.muted=true;
+        }
+
+      })
+
+
+      //mute button Functionality
+      function muteButtonDesign(){
+      if(!isMute) btnMute.src=unmuteImage;
+      else btnMute.src=btnMute.src=muteImage
+      }
+
+/*********** UP BUTTON FOR SONG DISPLAY***************/
+    //button logic for upButton, which will show DIv
+    upButton.addEventListener('click',()=>{
+    if(isStreamAvailable!==null){
+      if(isSongDisplaying){
+        nowPlaying.visibility='collapse'
+        nowPlaying.style.height='0px'
+        upButton.classList.add("song_details_button_rotate")
+
+      }
+      else {
+        nowPlaying.visibility='visible'
+        nowPlaying.style.height='auto'
+        upButton.classList.remove("song_details_button_rotate")
+      }
+      isSongDisplaying=!isSongDisplaying
+      //upButton.classList.toggle('song_details_button_rotate')
+
+    }
+
+
+    })
+    //for getting data of what is playing
+    async function updateSongtrack(stationId,streamUrl){
+    // console.log(stationId)
+    // console.log(streamUrl)
+      if(streamUrl===null){
+        nowPlaying.visiblility='collapse'
+
+      }
+      else {
+        data =   await getDatafromStream(stationId,streamUrl)
+        if(data!== null){
+          nowPlayingSongImage.src=data.songImgUrl
+          nowPlayingSongName.innerHTML=data.title
+          nowPlayingSongArtist.innerHTML=data.artist
+          nowPlayingRadioShow.innerHTML=data.showName
+        }
+        //console.log(data)
+
+        }
+      }
+    //collapse up button
+    function collapseUpButtonatStart(){
+      nowPlaying.visibility='collapse'
+      nowPlaying.style.height='0px'
+      upButton.classList.add("song_details_button_rotate")
+    }
+
+
+
+//**************END OF FOOTER AUDIO PLAYER CONTROLS*************///
+
+//*****************ALL CONTROLS OF MEDIA PLAYER CHROME STARTS **************//
+// Audio player error Handeling
+    audioPlayer.addEventListener('error',(error)=>{
+      let code=error.target.error.code
+      let radioStation=radioStationName
+      if(code===4){
+        buttonVisiblity(ERINPLAYING)
+        alert(`Currently ${radioStation} is not available`)
+        stationName.innerText=radioStation+" Station Not Available"
+
+        isPlaying=false;
+        playButtonDesign();
+      }
+      console.log(error.target.error.code)
+
+    })
+    //audip player pauses
+    function audioPlayerPause(){
+      console.log("Radio Paused")
+      isPlaying=false;
+      playButtonDesign();
+
+    }
+    //audio player pause event listener, when someone pauses from button or bluetooth
+    audioPlayer.addEventListener('pause',()=>{
+      audioPlayerPause()
+    })
+    //audio player play event listener when someone plays radio from button or bluetooth
+    audioPlayer.addEventListener("play",()=>{
+      console.log("Radio Play")
+      isPlaying=true;
+      playButtonDesign();
+    })
+
+
+  //Mute Function
+  audioPlayer.addEventListener('volumechange',()=>{
+      console.log(audioPlayer.volume)
+    if(audioPlayer.muted===true||audioPlayer.volume==0){
+      console.log('Its Muted BE')
+      isMute=true
+      muteButtonDesign();
+    }
+    else{
+      console.log('its not muted')
+      isMute=false
+      muteButtonDesign();
+    }
+
+
+  })
+  ////*******************END OF ALL CHROME MEDIA PLAYER FUNCTIONS*************///
+
+  ///**********************START OF CHROME CAST MEDIA PLAYER *****************//
+  //cast playerController for uploading url into chrome cast device
   async function  startRadioOnCast(streamUrl){
     //initializeCastApi()
     if(castSession){
@@ -826,166 +992,12 @@ function setStationDetails(stationID,cradioStationName,radioStationLogo,stationS
     }
   }
 }
-  //error Status
-  function buttonVisiblity(status){
-
-    if(status===NOT_PLAYING){btnTopBar.style.visibility="hidden"}
-    if(status===PLAYING){btnTopBar.style.visibility="visible"}
-    if(status===ERINPLAYING){btnTopBar.style.visibility="hidden"}
-  }
-  // Audio player error Handeling
-  audioPlayer.addEventListener('error',(error)=>{
-    let code=error.target.error.code
-    let radioStation=radioStationName
-    if(code===4){
-      buttonVisiblity(ERINPLAYING)
-      alert(`Currently ${radioStation} is not available`)
-      stationName.innerText=radioStation+" Station Not Available"
-
-      isPlaying=false;
-      playButtonDesign();
-    }
-    console.log(error.target.error.code)
-
-  })
-  ///Top bar  Button Play Status
-  btnTopBar.addEventListener('click',()=>{
-    initializeCastApi()
-    //refreshCastVariables()
-
-
-      //isPlaying=false;
-      if(castSession){
-          castPlayerControllerforAudio()
-      }
-      else{
-        if(isPlaying){
-          audioPlayer.pause()
-          audioPlayerPause()
-          console.log("play button condition :"+isPlaying)
-        }
-          else {audioPlayer.play();}
-          //console.log("play button condition :"+isPlaying)
-
-      }
-
-  })
-
   ///controlling play button for audio player for cast
   function castPlayerControllerforAudio(){
     castPlayerController.playOrPause()
     isPlaying=!isPlaying
     playButtonDesign()
 }
-  //audip player pauses
-  function audioPlayerPause(){
-    console.log("Radio Paused")
-    isPlaying=false;
-    playButtonDesign();
-
-  }
-  //audio player pause event listener, when someone pauses from button or bluetooth
-  audioPlayer.addEventListener('pause',()=>{
-    audioPlayerPause()
-  })
-  //audio player play event listener when someone plays radio from button or bluetooth
-  audioPlayer.addEventListener("play",()=>{
-    console.log("Radio Play")
-    isPlaying=true;
-    playButtonDesign();
-  })
-
-  //play button design
-  function playButtonDesign(){
-    if(isPlaying){
-      btnTopBar.innerHTML="II"
-    }
-    else{
-      btnTopBar.innerHTML=">"
-    }
-  }
-
-  //Mute Functionality for Button
-  //Mute Functionality
-  btnMute.addEventListener("click",()=>{
-    if(isMute){
-      audioPlayer.muted=false;
-    }
-    else{
-      audioPlayer.muted=true;
-    }
-
-  })
-
-
-//mute button Functionality
-function muteButtonDesign(){
-  if(!isMute) btnMute.src=unmuteImage;
-  else btnMute.src=btnMute.src=muteImage
-}
-//Mute Function
-audioPlayer.addEventListener('volumechange',()=>{
-    console.log(audioPlayer.volume)
-  if(audioPlayer.muted===true||audioPlayer.volume==0){
-    console.log('Its Muted BE')
-    isMute=true
-    muteButtonDesign();
-  }
-  else{
-    console.log('its not muted')
-    isMute=false
-    muteButtonDesign();
-  }
-
-
-})
-//button logic for upButton, which will show DIv
-upButton.addEventListener('click',()=>{
-if(isStreamAvailable!==null){
-  if(isSongDisplaying){
-    nowPlaying.visibility='collapse'
-    nowPlaying.style.height='0px'
-    upButton.classList.add("song_details_button_rotate")
-
-  }
-  else {
-    nowPlaying.visibility='visible'
-    nowPlaying.style.height='auto'
-    upButton.classList.remove("song_details_button_rotate")
-  }
-  isSongDisplaying=!isSongDisplaying
-  //upButton.classList.toggle('song_details_button_rotate')
-
-}
-
-
-})
-//for getting data of what is playing
-async function updateSongtrack(stationId,streamUrl){
-// console.log(stationId)
-// console.log(streamUrl)
-  if(streamUrl===null){
-    nowPlaying.visiblility='collapse'
-
-  }
-  else {
-    data =   await getDatafromStream(stationId,streamUrl)
-    if(data!== null){
-      nowPlayingSongImage.src=data.songImgUrl
-      nowPlayingSongName.innerHTML=data.title
-      nowPlayingSongArtist.innerHTML=data.artist
-      nowPlayingRadioShow.innerHTML=data.showName
-    }
-    //console.log(data)
-
-    }
-  }
-  //collapse up button
-  function collapseUpButtonatStart(){
-    nowPlaying.visibility='collapse'
-    nowPlaying.style.height='0px'
-    upButton.classList.add("song_details_button_rotate")
-  }
 
 
 
