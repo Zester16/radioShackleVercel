@@ -722,10 +722,11 @@
        receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
      });
      console.log("initialising Cast")
-    castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
-    console.log("init"+castSession)
-    let player = new cast.framework.RemotePlayer();
-    castPlayerController = new cast.framework.RemotePlayerController(player); }
+    //castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+    //console.log("init"+castSession)
+    //let player = new cast.framework.RemotePlayer();
+    //castPlayerController = new cast.framework.RemotePlayerController(player);
+  }
     catch (error) {
      console.log(error);
 
@@ -994,6 +995,8 @@
 }
   ///controlling play button for audio player for cast
   function castPlayerControllerforAudio(){
+    console.log("Cast Player "+isPlaying)
+    initializeCastApi()
     castPlayerController.playOrPause()
     isPlaying=!isPlaying
     playButtonDesign()
