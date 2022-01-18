@@ -669,7 +669,8 @@
     //initialising cast buttons
     window['__onGCastApiAvailable'] = function(isAvailable) {
   if (isAvailable) {
-    initializeCastApi();
+
+    setTimeout(initializeCastApi, 2000)
   }
 }
   }
@@ -717,7 +718,7 @@
 
   //initialising cast castSession
 
-  initializeCastApi = async function() {
+  initializeCastApi = function() {
   try{
 
     cast.framework.CastContext.getInstance().setOptions({
@@ -760,7 +761,7 @@
 
       });
       //delaying it delibrately to kick start castSession
-      setTimeout(checkAndUpdatePreviousCast, 2400)
+      setTimeout(checkAndUpdatePreviousCast, 6000)
 
   }
     catch (error) {
