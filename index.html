@@ -725,10 +725,31 @@
      });
 
      console.log("initialising Cast")
-    castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+     castContext = cast.framework.CastContext.getInstance();
+     castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+
+
+    castContext.addEventListener(cast.framework.RemotePlayer,)
     console.log("init"+castSession)
     let player = new cast.framework.RemotePlayer();
     castPlayerController = new cast.framework.RemotePlayerController(player);
+    //adding event listener to CastContext for pausing and playing media
+    castPlayerController.addEventListener(
+      cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function() {
+        let mediaSessionStatus = castSession.getMediaSession();
+        let castStationPlaying = getMediaSession().media.contentId
+        if(mediaSessionStatus.playerState == "PAUSED")
+        {
+          console.log("CAST IS PAUSED"+castStationPlaying);
+        }
+        else if (mediaSessionStatus.playerState == "PLAYING")
+        {
+            console.log("CAST IS PLAYING"+castStationPlaying);
+        }
+
+      // Update local player to disconnected state
+    }
+  });
   }
     catch (error) {
      console.log(error);
