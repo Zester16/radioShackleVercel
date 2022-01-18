@@ -728,14 +728,30 @@
      castContext = cast.framework.CastContext.getInstance();
      castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
 
-
-    castContext.addEventListener(cast.framework.RemotePlayer,)
-    console.log("init"+castSession)
+    //initializing player
     let player = new cast.framework.RemotePlayer();
     castPlayerController = new cast.framework.RemotePlayerController(player);
+    ///CAST EVENT LISTENERS
+    ///checks whether a radio station is playing on refresh. if a station is playing,
+    //it will pass details of station to setStationDetails function
+    let mediaSessionStatus = castSession.getMediaSession();
+    let castStationPlaying = mediaSessionStatus.media.contentId;
+    if(castStationPlaying)
+    {
+      for( const x in allStations)
+      {
+       if (castStationPlaying == allStations[x]["url"])
+       {
+         var currentStation=allStations[x];
+         setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
+       }
+     }
+    }
+
     //adding event listener to CastContext for pausing and playing media
-    castPlayerController.addEventListener(
-      cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function() {
+      castPlayerController.addEventListener(
+      cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function()
+      {
         let mediaSessionStatus = castSession.getMediaSession();
         let castStationPlaying = mediaSessionStatus.media.contentId
         let currentPlayingStatus =mediaSessionStatus.playerState
@@ -754,7 +770,7 @@
 
           // Update local player to disconnected state
 
-  });
+      });
   }
     catch (error) {
      console.log(error);
@@ -762,9 +778,10 @@
  }
 }
 
-   //refrest cast variables
+   //refrest cast variables and handeling error if any
 
-   function refreshCastVariables(){
+   function refreshCastVariables()
+   {
      try {
        console.log("refreshing cast variables")
 
@@ -777,16 +794,19 @@
 
      }
 
-  } catch (error) {
+  }
+  catch (error)
+  {
     console.error(error);
 
     // expected output: ReferenceError: nonExistentFunction is not defined
     // Note - error messages will vary depending on browser
+    }
   }
-}
 //********************RADIO PLAYER FUNCTIONS*************************//
   //takes care of radio selection
-  btnOnClick.forEach( (button)=>{
+  btnOnClick.forEach( (button)=>
+  {
       let streamUrl=null
       initializeCastApi()
       button.addEventListener("click",()=>{
@@ -825,7 +845,8 @@
   })
       //setting up of footer station and details
 
-      function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream){
+      function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream)
+      {
         console.log("SETRADIODETAILS "+stationLogo)
         radioStationName=cradioStationName
         stationName.innerText =cradioStationName
@@ -1022,7 +1043,8 @@
     }
   }
 }
-  ///controlling play button for audio player for cast
+  ///controlling play button for audio player for cast - below toggles play and pause,
+  //rest is handeled by event listener at init function
   function castPlayerControllerforAudio(){
     //console.log("Cast Player "+isPlaying+castPlayerController)
     //refreshCastVariables()
