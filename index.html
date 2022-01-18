@@ -731,8 +731,9 @@
      //delaying it delibrately to kick start castSession
 
     //initializing player
-  //  let player = new cast.framework.RemotePlayer();
-    //castPlayerController = new cast.framework.RemotePlayerController(player);
+  //
+    let player = new cast.framework.RemotePlayer();
+    castPlayerController = new cast.framework.RemotePlayerController(player);
     ///CAST EVENT LISTENERS
     ///checks whether a radio station is playing on refresh. if a station is playing,
     //it will pass details of station to setStationDetails function
