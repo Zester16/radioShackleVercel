@@ -670,7 +670,7 @@
     window['__onGCastApiAvailable'] = function(isAvailable) {
   if (isAvailable) {
 
-    setTimeout(initializeCastApi, 2000)
+    initializeCastApi();
   }
 }
   }
@@ -761,7 +761,7 @@
 
       });
       //delaying it delibrately to kick start castSession
-      setTimeout(checkAndUpdatePreviousCast, 6000)
+      setTimeout(checkAndUpdatePreviousCast, 9000)
 
   }
     catch (error) {
