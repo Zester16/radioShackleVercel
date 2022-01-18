@@ -738,16 +738,10 @@
       cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function() {
         let mediaSessionStatus = castSession.getMediaSession();
         let castStationPlaying = getMediaSession().media.contentId
-        if(mediaSessionStatus.playerState == "PAUSED")
-        {
-          console.log("CAST IS PAUSED"+castStationPlaying);
-        }
-        else if (mediaSessionStatus.playerState == "PLAYING")
-        {
-            console.log("CAST IS PLAYING"+castStationPlaying);
-        }
+         console.log(mediaSessionStatus.media.contentId)
+           console.log(mediaSessionStatus.playerState);
 
-      // Update local player to disconnected state
+          // Update local player to disconnected state
 
   });
   }
