@@ -737,7 +737,7 @@
     castPlayerController.addEventListener(
       cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function() {
         let mediaSessionStatus = castSession.getMediaSession();
-        let castStationPlaying = getMediaSession().media.contentId
+        let castStationPlaying = mediaSessionStatus.media.contentId
          console.log(mediaSessionStatus.media.contentId)
            console.log(mediaSessionStatus.playerState);
 
