@@ -760,7 +760,7 @@
 
       });
       //delaying it delibrately to kick start castSession
-      setTimeout(checkAndUpdatePreviousCast, 1500)
+      setTimeout(checkAndUpdatePreviousCast, 2400)
 
   }
     catch (error) {
@@ -1050,6 +1050,7 @@ function checkAndUpdatePreviousCast()
     refreshCastVariables()
     if(castSession)
     {
+      console.log("CAST CHECK and Update");
       let mediaSessionStatus = castSession.getMediaSession();
       let castStationPlaying = mediaSessionStatus.media.contentId;
       if(castStationPlaying)
