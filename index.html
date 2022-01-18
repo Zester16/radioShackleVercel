@@ -523,7 +523,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 10.09
+    version: 11.00
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -738,8 +738,19 @@
       cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function() {
         let mediaSessionStatus = castSession.getMediaSession();
         let castStationPlaying = mediaSessionStatus.media.contentId
-         console.log(mediaSessionStatus.media.contentId)
-           console.log(mediaSessionStatus.playerState);
+        let currentPlayingStatus =mediaSessionStatus.playerState
+         //console.log(mediaSessionStatus.media.contentId)
+           //console.log(mediaSessionStatus.playerState);
+           if(currentPlayingStatus == "PAUSED")
+           {
+             isPlaying=false;
+             playButtonDesign()
+           }
+           else if(currentPlayingStatus == "PLAYING")
+           {
+             isPlaying=true;
+             playButtonDesign()
+           }
 
           // Update local player to disconnected state
 
@@ -1013,12 +1024,13 @@
 }
   ///controlling play button for audio player for cast
   function castPlayerControllerforAudio(){
-    console.log("Cast Player "+isPlaying+castPlayerController)
+    //console.log("Cast Player "+isPlaying+castPlayerController)
     //refreshCastVariables()
     castPlayerController.playOrPause()
-    isPlaying=!isPlaying
-    playButtonDesign()
+
 }
+
+//checks if
 
 
 
