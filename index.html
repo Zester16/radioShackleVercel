@@ -734,19 +734,7 @@
     ///CAST EVENT LISTENERS
     ///checks whether a radio station is playing on refresh. if a station is playing,
     //it will pass details of station to setStationDetails function
-    let mediaSessionStatus = castSession.getMediaSession();
-    let castStationPlaying = mediaSessionStatus.media.contentId;
-    if(castStationPlaying)
-    {
-      for( const x in allStations)
-      {
-       if (castStationPlaying == allStations[x]["url"])
-       {
-         var currentStation=allStations[x];
-         setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
-       }
-     }
-    }
+
 
     //adding event listener to CastContext for pausing and playing media
       castPlayerController.addEventListener(
@@ -771,6 +759,7 @@
           // Update local player to disconnected state
 
       });
+      checkAndUpdatePreviousCast();
   }
     catch (error) {
      console.log(error);
@@ -1049,6 +1038,36 @@
     //console.log("Cast Player "+isPlaying+castPlayerController)
     //refreshCastVariables()
     castPlayerController.playOrPause()
+
+}
+// checks whether any previous cast putton is present
+function checkAndUpdatePreviousCast()
+{
+  try
+  {
+    refreshCastVariables()
+    if(castSession)
+    {
+      let mediaSessionStatus = castSession.getMediaSession();
+      let castStationPlaying = mediaSessionStatus.media.contentId;
+      if(castStationPlaying)
+      {
+        for( const x in allStations)
+        {
+         if (castStationPlaying == allStations[x]["url"])
+         {
+           var currentStation=allStations[x];
+           setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
+         }
+       }
+      }
+    }
+
+  }
+  catch(error)
+  {
+    console.log("CAST CURRENT PLAY ERRROR"+error);
+  }
 
 }
 
