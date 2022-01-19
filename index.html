@@ -2,57 +2,1113 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>RaaSa</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="icon" type="image/png"  href="svg_and_images\radio_shackle.png">
+    <title>Radio Shackle</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- For brand name -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <!-- for Now Plating FOnt Oswals -> font-family: 'Oswald', sans-serif; -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <!-- For Station Name -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- For Favourites header ROBOTO -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- For Station name in station selection -->
+    <!--font-family: 'Noto Sans KR', sans-serif; -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet"> -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+    <style media="screen">
+    /* For Mobile Screen */
+
+      body{
+        margin: 0;
+        box-sizing: border-box;
+        padding-bottom: 15%;
+        background-color: rgb(238, 238, 238);
+
+        /* background-color:#fffdd0; */
+      }
+      /* Top Header with brand name and play details*/
+              /* first Main Element Divs of header*/
+              /* Details for brand mane */
+      .header {
+        /* style for header */
+        color: black;
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+        margin:0 auto;
+        padding:0;
+        color: white;
+        background: #14213D;
+        width: 100%;
+      }
+      /* Styling foe logo */
+      #brand_logo_header{
+        width: 60px;
+        height: 60px;
+        padding-left: 2px;
+        margin:2px;
+        visibility: visible;
+      }
+      /* for cast cag */
+      google-cast-launcher{
+        width:30px;
+        height:30px;
+        padding-left: 2px;
+        margin:2px;
+        visibility: visible;
+      }
+      /* Styling for brand name */
+        .brand_name{
+          font-family: 'Lobster', cursive;
+          font-weight: 500;
+          font-size: 2.5em;
+          text-align: center;
+          margin: 1%;
+          padding-right: 1%;
+          color: #FCA311;
+           ;
+        }
+        /* border-right: 3px solid #FCA311; */
+        /* //////////////////////////////////////////////////////////////////////////// */
+        /* Main body containing player and radio sattions list*/
+        /* Radio station body */
+        .radio_station_player_body{
+
+
+        }
+        /* Displays introduction to radio shackle */
+        .info_radio_shackle{
+          font-size: 1.2em;
+          text-align: center;
+          padding: 2%;
+          font-family: 'Fira Sans', sans-serif;
+          text-transform: uppercase;
+        }
+        /* displays header fav header  */
+        .favourite_header, .other_options_header{
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            display: flex;
+            text-align:center;
+            width:100%;
+            justify-content: center;
+            align-items: center;
+        }
+        #favourite_header_image{
+          padding:5px;
+          margin: 0%
+        }
+        #other_options_header_image{
+          padding:5px;
+          margin: 0%;
+          height:50px;
+          width:50px;
+        }
+        #virgin_group_header_image{
+          width: 80px;
+          height:50px;
+          margin: 0%;
+          padding:5px;
+        }
+        /* .radio */
+        /* Style for main div */
+        .radio_stations_family_favourite{
+          display: flex;
+          flex-direction: row;
+          padding: 2%;
+          flex-wrap: wrap;
+          justify-content:flex-start;
+        }
+        /* for div with virgin radio station */
+        .radio_stations_virgin{
+          display: flex;
+          flex-direction: row;
+          padding: 2%;
+          flex-wrap: wrap;
+          justify-content:flex-start;
+          background-color: #fd5c63
+          /* background-color: #fff2f2 */
+
+        }
+        .radio_stations_body{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content:flex-start;
+          padding:2%;
+          align-content: space-between;
+
+        }
+        /* for logos which have white text */
+        .radio_stations_body_dark{
+          background: #0f2027; /* fallback for old browsers */
+          background: -webkit-linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+          color: white;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          padding:2%;
+        }
+
+        /* Style for card view for each radio station*/
+      .individual_radio_station{
+        padding: 4%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        box-sizing: border-box;
+        justify-content: center;
+        padding:2%;
+        margin: .5%;
+        border-radius: 10%;
+  }
+      .individual_radio_station:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        background-color:#FCA311;
+      }
+      /* Creates colorful putton */
+      .play_radio{
+        border-radius:20px;
+        background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+        transition: 0.5s;
+        background-size: 200% auto;  }
+
+      /* Individual radio stations header */
+      .individual_radio_station_header{
+        margin-top: 1%;
+        font-family: 'Fira Sans', sans-serif;
+        text-transform:uppercase;
+        font-weight: 500;
+      }
+      .play_radio:hover{
+         background-position: right center;
+      }
+      /* All images */
+      img{
+              width: 120px;
+              height:60px;
+              margin: 5%;
+            }
+      .img_square{
+        width: 75px;
+        height:75px;
+        margin: 5px;
+      }
+      /* Button with Up Arrow to show Div */
+      #song_details_button{
+        width: 30px;
+        height: 30px;
+
+      }
+      /* When the up details button is clicked, image is flipped */
+      .song_details_button_rotate{
+        transform: rotate(180deg);
+      }
+
+      /*Footer containing control button, radio station being played, image radio stations*/
+      .footer{
+        position: fixed;
+        bottom: 0;
+        background:#121212;
+        width: 100%;
+        border-top-left-radius:2%;
+        border-top-right-radius: 2%;
+        visibility: collapse;
+        box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
+        -moz-box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
+        -webkit-box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
+        transition: .2s;
+      }
+      .footer_top{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center;
+        box-sizing: border-box;
+        padding:1%;
+
+      }
+      .footer_bottom{
+        overflow:hidden;
+        display: flex;
+        flex-direction: row;
+        visibility: visible;
+        justify-content:space-between;
+        box-sizing: border-box;
+        color: white;
+      }
+      .footer_bottom_off{
+
+      }
+
+
+      /* Aligning Various Divs */
+      .now_playing_radio_station_display_class{
+        align-items: center;
+        display:flex;
+        justify-content:space-around;
+
+      }
+      .now_playing_station_name_div{
+        display: flex;
+        justify-content: space-around;
+      }
+
+      /*for line which says currently playing*/
+      #currently_playing_tag{
+        text-transform: uppercase;
+        color:white;
+        font-family: 'Lato', sans-serif;
+        padding-top: 1%;
+      }
+      /* Currently Playing radio station at bottom */
+      #now_playing_station_name{
+        font-family: 'Oswald', sans-serif;
+        color: #06D6A0;
+        display: block;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.2em;
+        justify-content: space-between;
+        transition: 2s;
+
+      }
+      /* DIv which holds both the below buttons */
+      .audio_player_buttons{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+
+      }
+      #now_playing_station_logo{
+        height: 40px;
+        width: 80px;
+        padding-right:16%;
+        box-sizing: border-box;
+
+      }
+      /*Button which plays music on clicking*/
+      #top_bar_play_button{
+        border-radius: 15%;
+        background: #FCA311;
+        /*border:solid white 2px; */
+        color: white;
+        font-size: 2em;
+        font-weight: 500;
+        align-items: center;
+        transition: background .8s;
+        border: white solid 1px;
+        margin-right: 21%;
+      }
+
+      /* On Hovering Button */
+      #top_bar_play_button::selection{
+          background: #FF4500;
+          border-radius: 44%;
+      }
+      /* Top Bar Mute button */
+      #top_bar_mute_button, textarea{
+        background-color: white;
+        width: 30px;
+        height:40px;
+        border-radius: 15%;
+        align-items: center;
+      }
+      .audio_player_song_details{
+        padding: 1%;
+
+      }
+      /* Audion Player that plays radio */
+        .audio_player{
+          visibility: collapse;
+      }
+
+      /* ///////////////////WHen screen size change to mobile//////////////// */
+  /* For Mobiles */
+    @media only screen and (max-width: 600px){
+      body{
+        margin: 0;
+        font-size: 2em;
+        /* for making screen size relative */
+        padding-top:20%;
+        padding-bottom: 30%;
+
+      }
+      /* Images */
+      img{
+        width: 120px;
+        height:90px;
+        padding:5%;
+      }
+      .img_square{
+        width: 90px;
+        height:90px;
+        margin: 5%;
+      }
+      /*Changing header direwction */
+      .header{
+        display: grid;
+        flex-direction: column;
+        position: fixed;
+        width:100%;
+        top:0;
+
+      }
+      /* for beand logo on header */
+      #brand_logo_header{
+        width: 0px;
+        height: 0px;
+        padding:0;
+        margin: 0;
+        visibility: collapse;
+      }
+
+      .footer{
+        font-size:.75em;
+        animation: 1s;
+      }
+      /* font change for body */
+      .info_radio_shackle , .favourite_header, .other_options_header, .version{
+        font-size: .5em;
+      }
+      .now_playing_station_logo{
+        margin-right: 6%;
+      }
+      /* Changing Properties of Brand name */
+      .brand_name{
+        text-align: center;
+        border-right: 0px;
+        border-bottom: 1px solid #FCA311; ;
+        font-size:1em;
+      }
+      /* Image for favourite */
+      #favourite_header_image{
+        width: 90px;
+        height:60px;
+        padding:5%;
+      }
+      /* Div Section*/
+
+      /* Style for family favourites */
+      .radio_stations_family_favourite{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding:2%;
+      }
+      .radio_stations_virgin{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding:2%;
+
+      }
+
+      /* Style for div holding songs in light color */
+      .radio_stations_body {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+
+      }
+      /*DIv for holding songs in DRak color background*/
+      .radio_stations_body_dark {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding:2%
+      }
+      /* Individual Radio stations*/
+      .individual_radio_station{
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+        align-items: center;
+      }
+      /*Footer aka radio player */
+      .audio_player_song_details{
+        padding: 4%;
+      }
+      .play_radio{
+        font-size: .8em;
+        border-radius: 20px;
+      }
+        .footer_bottom{flex-direction: column;}
+      /*Player on top tags*/
+      #top_bar_play_button{
+        font-size: 1em;
+      }
+      #now_playing_station_name{
+        font-size: .75em;
+      }
+
+    .now_playing_header{
+      width: 0;
+      height: 0;
+      visibility: collapse;
+    }
+
+    }
+
+    </style>
   </head>
   <body>
-<google-cast-launcher></google-cast-launcher>
+  <div class="header">
+    <!-- Holding brand image -->
+    <img src="svg_and_images\radio_shackle.svg" alt="" id="brand_logo_header">
+    <!-- Holding Brandname -->
+    <div class="brand_name">
+
+      <span>Radio Shackle</span>
+
+    </div>
+<google-cast-launcher id="google_cast_logo"></google-cast-launcher>
+
+    <!-- Displays details of current track being played -->
+
+    <!-- To Display Name of radio station being played -->
+    <!-- APSD -->
+
+  </div>
+  <!-- Radio Station Introduction -->
+  <div class="info_radio_shackle">
+    <p>Welcome to Radio Shackle!!!!</p>
+    Your one stop for connecting anywhere and everywhere in world. Click on button and you will experience a new world and a new culture.
+  </div>
+  <!-- Heqader for Family Favourite -->
+  <div class="favourite_header">
+  <img id="favourite_header_image" src="https://img.icons8.com/emoji/96/000000/bookmark-emoji.png"/><span>Favourites</span>
+  </div>
+  <!-- contains radio stations awhich are family favourite-->
+  <div class="radio_stations_family_favourite">
+
+  </div>
+  <!-- Heqader for Virgin Radio -->
+  <div class="favourite_header">
+  <img id="virgin_group_header_image" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png"/><span>Virgin Group Radio Stations</span>
+  </div>
+  <div class="radio_stations_virgin">
+
+  </div>
+  <!-- Header for rest of stations -->
+  <div class="other_options_header">
+  <img id="other_options_header_image" src="svg_and_images\other_options.png"/><span>Other Options</span>
+  </div>
+    <!-- contains radio stations and body -->
+  <div class="radio_station_player_body">
+
+    <!-- white background radio stations -->
+
+    <div class="radio_stations_body">
+
+    </div>
+    <div class="radio_stations_body_dark">
+
+    </div>
+    <div class="audio_player">
+
+      <audio  id="audio_player" autoplay controls preload='auto'>
+        <source id="audio_src"src="" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+  <div class="version_information">
+    version: 11.02
+  </div>
+  <!-- Holds Now playing and other details -->
+  <div class="footer">
+      <div class="footer_top">
+        <!-- header tag for currently playing having  -->
+        <div class="now_playing_header">
+          <span id="currently_playing_tag">Currently Playing </span>
+        </div>
+        <!-- WHere all buttons are visible, radio station name, what is being played -->
+        <div class="now_playing_radio_station_display_class">
+          <div class="">
+          <img src="" id="now_playing_station_logo">
+          </div>
+
+          <div class="now_playing_station_name_div">
+            <span id="now_playing_station_name"></span>
+          </div>
+
+
+        </div>
+        <!-- Shows Buttons -->
+        <div class="audio_player_buttons">
+          <button id="top_bar_play_button">II</button>
+          <!-- https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg -->
+          <!-- https://upload.wikimedia.org/wikipedia/commons/3/3f/Mute_Icon.svg -->
+          <input type="image"  id="top_bar_mute_button" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg">
+        </div>
+        <div class="audio_player_song_button">
+          <input type='image'id="song_details_button" src="svg_and_images/downarrow.png" class="song_details_button_rotate">
+        </div>
+      </div>
+
+      <div class="footer_bottom">
+
+        <div class="now_playing_song_img">
+          <img id="now_playing_song_img"src="">
+        </div>
+        <div class="now_playing_song_name">
+          <span id="now_playing_song_name"></span> by <span id="now_playing_song_artist"></span>
+        </div>
+        <div class="now_playing_song_artist">
+
+        </div>
+        <div class="now_radio_show">
+          <span id="now_radio_show"></span>
+        </div>
+      </div>
+  </div>
+  <!-- <div class="one_fm_913">
+    <span>ONE FM</span>
+    <button id="one_fm_913" class="play_radio">Jeeeez</button>
+  </div> -->
+  <!-- Tells which station is playing -->
+
+
   </body>
-  <script type="text/javascript">
+  <!-- Exxtra scripts -->
+  <script type="text/javascript" src="scripts/radioStationFinder.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  //this is main object containing all radio sattions
+
+  let allStations={
+    one_fm_913:{id:"one_fm_913",name:"One FM 913",country:"singapore",background:"white",fav:true,url:"https://22253.live.streamtheworld.com/ONE_FM_913.mp3",logo:"https://www.onefm.sg/wp-content/assets/3/img/NAV_01_Logo_913-new.svg",stream:null},
+    money_fm_893:{id:"money_fm_893",name:"Money FM 893",country:"singapore",background:"white",fav:false,url:"https://22253.live.streamtheworld.com/MONEY_893.mp3",logo:"https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg",stream:null},
+    nrj_zurich_109:{id:"nrj_zurich_109",name:"Energy Zurich 109",country:"Swiss",background:"white",fav:false,url:"https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3", logo:"https://upload.wikimedia.org/wikipedia/en/5/54/Logo_NRJ_2016.png",stream:null},
+    q_fm_102:{id:"q_fm_102",name:"Dublins Q102",country:"Ireland",background:"white",fav:true,url:"https://wg.cdn.tibus.net/q102MP3128", logo:"https://mm.aiircdn.com/614/5d5fcba7241c4.png",stream:"https://www.q102.ie/radiofeed_request/?a=newer"},
+    wrs_fm:{id:"wrs_fm",name:"World Rasio Swiss",country:"Swiss",background:"white",fav:false,url:"https://streamingr.broadcastradio.com:10295/wrs",logo:"https://mm.aiircdn.com/45/581c75ebd31ac.png",stream:null},
+    sunny_fm_102:{id:"sunny_fm_102",name:"Sunny FM",country:"Utah, USA",background:"white",fav:false,url:"https://ice10.securenetsystems.net/KCLS", logo:"https://mysunny1015.com/wp-content/uploads/2019/03/logo-kcls-sunny-1015-dark-light.png",stream:null},
+    rosj_fm_96:{id:"rosj_fm_96",name:"Rock of St George Utah",country:"Utah, USA",background:"dark",fav:false,url:"https://ice41.securenetsystems.net/KCLSHD2",logo:"https://rockstgeorge.com/wp-content/uploads/2019/03/logo-96X-rock-dark-light.png",stream:null},
+    mmm_fm_1049:{id:"mmm_fm_1049",name:"Triple M",country:"Melbourn, Australia",background:"dark",fav:false,url:"https://ic3ti.scahw.com.au/3mmm_128",logo:"https://myradio-img-prod.scalabs.com.au/api/assets/72191957-f81d-40ff-8543-15d8a8b5ca90/",stream:null},
+    beat_fm_1025:{id:"beat_fm_1025",name:"Beat FM",country:"Jordan",background:"dark",fav:false,url:"https://securestreams2.autopo.st:1242/live",logo:"https://mybeat.fm/assets/images//logo.png",stream:null},
+    mood_fm_jd:{id:"mood_fm_jd",name:"Mood FM",country:"Jordan",background:"dark",fav:false,url:"https://securestreams2.autopo.st:1241/live",logo:"https://www.mood.fm/assets/images/mood_fm.png",stream:null},
+    breeze_fm_nz:{id:"breeze_fm_nz",name:"Breeze FM",country:"New Zealand",background:"white",fav:false,url:"https://tunein-icecast.mediaworks.nz/breeze_tauranga_128kbps",logo:"https://thebreeze.co.nz/design/clientlibs/assets/breeze/imgs/ui/logo-mobile.svg",stream:'https://radio-api.mediaworks.nz/radio-api/v3/station/thebreeze/tauranga/web'},
+    b_fm_899:{id:"b_fm_899",name:"BFM 89.9 Business News", country:"Malaysia",background:"dark",fav:false,url:"https://22283.live.streamtheworld.com/BFMAAC.aac",logo:"https://www.bfm.my/themes/bfmmy/assets/images/bfm-logo.jpg",stream:null},
+    edge_fm_1021:{id:"edge_fm_1021",name:"Edge FM 102.1", country:"Camada",background:"dark",fav:false,url:"https://corus.leanstream.co/CFNYFM",logo:"https://edge.ca/wp-content/uploads/sites/5/2021/02/hero_logo_380x170_edge.png",stream:null},
+    rmf_maxxx_fm:{id:"rmf_maxxx_fm",name:"RMF MAXX FM", country:"Poland",background:"white",url:"https://rs9-krk2.rmfstream.pl/rmf_maxxx",logo:"https://www.rmfmaxxx.pl/assets-16/images/rmfmaxxx-logo.png",stream:null},
+    rmf_fm_pl:{id:"rmf_fm_pl",name:"RMF FM", country:"Poland",background:"white",fav:false,url:"https://rs9-krk2.rmfstream.pl/rmf_fm",logo:"https://www.rmf.fm//2018/img/logo-bez-x2.png",stream:null},
+    vrock_fm_ch:{id:"vrock_fm_ch",name:"Virgin Rock", country:"Switzerland",background:"virgin",fav:false,url:"https://icecast.argovia.ch/vrock",logo:"https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png",stream:null},
+    bloomberg_fm:{id:"bloomberg_fm",name:"Bloomberg Radio", country:"USA",background:"white",fav:true,url:"https://24423.live.streamtheworld.com/WBBRAMAAC48.aac",logo:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png",stream:null},
+    bloomberg_fm_backup:{id:"bloomberg_fm_backup",name:"Bloomberg Backup", country:"USA",background:"white",url:"https://18843.live.streamtheworld.com/WBBRAMAAC48.aac",logo:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png",stream:null},
+    max_fm_1039:{id:"max_fm_1039",name:"Max FM 103.9", country:"Canada",background:"dark",url:"https://mbsradio.leanstream.co/CFQMFM-MP3",logo:"https://1039maxfm.com/wp-content/uploads/sites/8/2021/02/MAX103-color.png",stream:null},
+    radio_bern_1:{id:"radio_bern_1",name:"Radio Bern 1", country:"Swiss",background:"white",fav:true,url:"https://mp3.radiobern1.ch/radiobern1128k", logo:"svg_and_images/radiobern1.png",stream:"https://www.radiobern1.ch/api/pub/gql/radiobern/AudioLiveData/e0c0de0fa34937485951a3a3c1fb2aaffc94311e"},
+    radio_klassik:{id:"radio_klassik",name:"Radio Klassik", country:"Germany",background:"white",fav:true,url:"https://edge52.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?"},
+    radio_rundfunk_914:{id:"radio_rundfunk_914",name:"Berliner Rundfunk 91.4", country:"Germany",background:"white",fav:false,url:"https://stream.berliner-rundfunk.de/brf/mp3-128/internetradio", logo:"https://www.berliner-rundfunk.de//_nuxt/3e020671c5416fa80e6b805f4364f376.svg",stream:"https://top-stream-service.loverad.io/v1/br?"},
+    vradio_lebanon_fm:{id:"vradio_lebanon_fm",name:"Lebanon 89.5", country:"Lebanon",background:"virgin",fav:false,url:"http://node-26.zeno.fm/dwxw3p9vea0uv?rj-ttl=5&rj-tok=AAABdfuFcQ4AHao1lT3WKsmr6g",logo:"https://virginradiolb.com/assets/themes/TriTheme/images/logo.png",stream:null},
+    vradio_all_stars:{id:"vradio_all_stars",name:"All Stars Lebanon 89.7", country:"Lebanon",background:"virgin",fav:false,url:"http://node-25.zeno.fm/h66yxnapga0uv?rj-ttl=5&rj-tok=AAABfHPP9RIA5LSgnhKkmu7Wmw",logo:"https://virginradiolb.com/assets/themes/TriTheme/images/logo-stars.png",stream:null},
+    vradio_uk_fm:{id:"vradio_uk_fm",name:"Virgin UK", country:"UK",background:"virgin",fav:false,url:"https://radio.virginradio.co.uk/stream",logo:"https://virginradio.co.uk/virgin/assets/virginradiouk-thumbnail.png",stream:null},
+    jazz_fm_rm:{id:"jazz_fm_rm",name:"Jazz FM", country:"Romania",background:"white",fav:false,url:"https://s4.radio.co/s1e25bf273/listen",logo:"https://jazzfm.ro/assets/images/assets_logo.svg",stream:null},
+    classic_praha:{id:"classic_praha",name:"Classic Praha", country:"Chez Republic",background:"white",fav:false,url:"https://icecast8.play.cz/classic128.mp3", logo:"https://www.radio.net/images/broadcasts/f9/e8/12702/c300.png",stream:null},
+    mujrozhals_jazz:{id:"mujrozhals_jazz",name:"ČRo Jazz", country:"Chez Republic",background:"white",fav:false,url:"https://rozhlas.stream/jazz_mp3_128.mp3", logo:"https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png",stream:null},
+    radio_klassik_backup:{id:"radio_klassik_backup",name:"Radio Klassik BKP", country:"Germany",background:"white",fav:false,url:"https://edge02.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?"},
+}
+
+  //dynamically creating radio allStations
+  let mainRadioDiv=document.querySelector(".radio_stations_body")
+  let mainRadioDivDark=document.querySelector(".radio_stations_body_dark")
+  let favRadioDiv=document.querySelector(".radio_stations_family_favourite")
+  let virginRadioDiv=document.querySelector(".radio_stations_virgin")
+
+  for(x in allStations){
+    let station=allStations[x]
+    //creates new div and adds styling
+    let newStation=document.createElement("div")
+    newStation.classList="individual_radio_station"
+
+    //creates img child
+    let logo=document.createElement("img")
+    logo.src=station.logo
+
+    //creates a container DIv
+    let fmContainer=document.createElement("div")
+    fmContainer.classList="fm_container"
+    //creates header span
+    let header=document.createElement("div")
+    //adding text to header
+    header.appendChild(document.createTextNode(station.name))
+    header.classList="individual_radio_station_header"
+    //creating button, adding text, adding class and id
+    let button=document.createElement("BUTTON")
+    button.innerHTML=`PLAY ${station.name}`
+    button.classList="play_radio"
+    button.id=station.id
+    //adding  header and then button to div container
+    fmContainer.appendChild(header)
+    fmContainer.appendChild(button)
+    //adding fm container to new station dic
+    newStation.appendChild(logo)
+    newStation.appendChild(fmContainer)
+
+    //adding individual radio div to final div container
+    if(station.background==="dark"){mainRadioDivDark.appendChild(newStation)}
+    else if (station.background==="virgin") {
+      logo.classList.add("img_square")
+      virginRadioDiv.appendChild(newStation)
+    }
+    else{mainRadioDiv.appendChild(newStation)}
+    if(station.fav===true){
+
+      favRadioDiv.appendChild(newStation)
+    }
+
+    //initialising cast buttons
     window['__onGCastApiAvailable'] = function(isAvailable) {
   if (isAvailable) {
+
     initializeCastApi();
   }
-};
-var castSession
-var  playerController
+}
+  }
+  // initialisi9ng variable for bu8tton and audio player
+  let btnOnClick=document.querySelectorAll(".play_radio")
+  let audioPlayer=document.querySelector("#audio_player")
+  let stationName=document.querySelector("#now_playing_station_name")
+  let stationLogo=document.querySelector("#now_playing_station_logo")
+  let btnTopBar=document.querySelector("#top_bar_play_button")
+  let btnMute=document.querySelector("#top_bar_mute_button")
+  let footer=document.querySelector(".footer")
+  let songDetails=document.querySelector(".footer")
+  //for song display
+  let nowPlaying=document.querySelector('.footer_bottom')
+  let upButton=document.querySelector("#song_details_button")
+  let nowPlayingSongName=document.querySelector("#now_playing_song_name")
+  let nowPlayingSongImage=document.querySelector("#now_playing_song_img")
+  let nowPlayingSongArtist=document.querySelector("#now_playing_song_artist")
+  let nowPlayingRadioShow=document.querySelector("#now_radio_show")
+  let station=null;
+  let radioStationName=null;
+  let intervalID=null;
+  footer.style.visibility="collapse"
+  nowPlaying.style.height='0px'
+  //making audio player invisible at start
 
-var classicR="https://edge52.streams.klassikradio.de/klassikradio-deutschland"
-initializeCastApi = async function() {
-cast.framework.CastContext.getInstance().setOptions({
-    receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
-  });
- castSession = await cast.framework.CastContext.getInstance().getCurrentSession();
- var player = new cast.framework.RemotePlayer();
-var controller = new cast.framework.RemotePlayerController(player);
+  //image variables
+  const muteImage=" https://upload.wikimedia.org/wikipedia/commons/3/3f/Mute_Icon.svg"
+  const unmuteImage="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg"
+  //button variables
+  let isPlaying=false;
+  let isMute=false;
+  //check whether song is being displayed
+  let isSongDisplaying=false;
+  let isStreamAvailable=null;
 
-//   var mediaInfo = new chrome.cast.media.MediaInfo("https://edge52.streams.klassikradio.de/klassikradio-deutschland", "audio/mp3");
-// var request = new chrome.cast.media.LoadRequest(mediaInfo);
-// if(castSession){
-//   castSession.loadMedia(request).then(
-//     function() { console.log('Load succeed'); },
-//     function(errorCode) { console.log('Error code: ' + errorCode); });
-// }
-};
-async function  startRadio(streamUrl){
-  await initializeCastApi()
-  if(castSession){
-    console.log(streamUrl)
-      var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
-     var request = await new chrome.cast.media.LoadRequest(mediaInfo);
-      if(castSession){
-        castSession.loadMedia(request).then(
-          function() { console.log('Load succeed'); },
-          function(errorCode) { console.log('Error code: ' + errorCode); });
-          var player = await new cast.framework.RemotePlayer();
-          playerController = await new cast.framework.RemotePlayerController(player);
+  //cast variables
+  var castSession;
+  var castPlayerController;
+
+  //play status constats
+  const NOT_PLAYING=0;
+  const PLAYING=1;
+  const ERINPLAYING=2;
+
+  //initialising cast castSession
+
+  initializeCastApi = function() {
+  try{
+
+    cast.framework.CastContext.getInstance().setOptions({
+       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+     });
+
+     //setTimeout(checkAndUpdatePreviousCast, 5000)
+     console.log("initialising Cast")
+     castContext = cast.framework.CastContext.getInstance();
+     castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+     //delaying it delibrately to kick start castSession
+
+    //initializing player
+  //
+    let player = new cast.framework.RemotePlayer();
+    castPlayerController = new cast.framework.RemotePlayerController(player);
+    ///CAST EVENT LISTENERS
+    //makes cast button to pause if castSession ends
+    //it displays what is playing if page is refreshed while cast is still happening
+    castContext.addEventListener(
+  cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
+    function(event)
+     {
+      switch (event.sessionState) {
+        case cast.framework.SessionState.SESSION_STARTED: console.log(cast.framework.SessionState.SESSION_STARTED)
+        case cast.framework.SessionState.SESSION_RESUMED:checkAndUpdatePreviousCast()
+          break;
+        case cast.framework.SessionState.SESSION_ENDED: displayCastStoped();
+          console.log('CastContext: CastSession disconnected');
+
+          // Update locally as necessary
+          break;
+      }
+    })
+
+    ///checks whether a radio station is playing on refresh. if a station is playing,
+    //it will pass details of station to setStationDetails function
+
+    //adding event listener to CastContext for pausing and playing media
+      castPlayerController.addEventListener(
+      cast.framework.RemotePlayerEventType.IS_PAUSED_CHANGED, function()
+      {
+        let mediaSessionStatus = castSession.getMediaSession();
+        let castStationPlaying = mediaSessionStatus.media.contentId
+        let currentPlayingStatus =mediaSessionStatus.playerState
+         //console.log(mediaSessionStatus.media.contentId)
+           //console.log(mediaSessionStatus.playerState);
+           if(currentPlayingStatus == "PAUSED")
+           {
+             isPlaying=false;
+             playButtonDesign()
+           }
+           else if(currentPlayingStatus == "PLAYING")
+           {
+             isPlaying=true;
+             playButtonDesign()
+           }
+
+          // Update local player to disconnected state
+
+      });
+
 
   }
-var play=playerController.playOrPause()
+    catch (error) {
+     console.log(error);
 
-var stop=playerController.stop()
+ }
 }
+
+   //refrest cast variables and handeling error if any
+
+   function refreshCastVariables()
+   {
+     try {
+       console.log("refreshing cast variables")
+
+         castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+         let player = new cast.framework.RemotePlayer();
+         castPlayerController = new cast.framework.RemotePlayerController(player);
+         if(castSession){
+           mediaStatus = castSession.getMediaSession();
+           console.log(mediaStatus)
+
+     }
+
+  }
+  catch (error)
+  {
+    console.error(error);
+
+    // expected output: ReferenceError: nonExistentFunction is not defined
+    // Note - error messages will vary depending on browser
+    }
+  }
+//********************RADIO PLAYER FUNCTIONS*************************//
+  //takes care of radio selection
+  btnOnClick.forEach( (button)=>
+  {
+      let streamUrl=null
+      initializeCastApi()
+      button.addEventListener("click",()=>{
+        if (intervalID) {
+        clearTimeout(intervalID);
+        }
+        collapseUpButtonatStart()
+         station=button.id
+        audioPlayer.pause();
+          //audioPlayer.src=""
+          //assigning radio station
+          if(allStations[station]){
+            var currentStation=allStations[station]
+            //audioPlayer.src=currentStation.url
+            stationName.innerText=""
+            streamUrl=currentStation.url
+            setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
+            }
+            else{
+              audioPlayer.src="https://wg.cdn.tibus.net/q102MP3128" }
+            console.log(`${allStations[station].id}`)
+            refreshCastVariables()
+            console.log(castSession)
+            //castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
+            if(castSession){
+
+              startRadioOnCast(streamUrl)
+              //initializeCastApi()
+            }
+            else{
+            audioPlayer.src=streamUrl
+            //audioPlayer.play();
+            }
+
+        })
+  })
+      //setting up of footer station and details
+
+      function setStationDetails(stationID,cradioStationName,radioStationLogo,stationStream)
+      {
+        console.log("SETRADIODETAILS "+stationLogo)
+        radioStationName=cradioStationName
+        stationName.innerText =cradioStationName
+        //
+        clearTimeout(updateSongtrack);
+        stationLogo.src =radioStationLogo
+        isStreamAvailable=stationStream
+        intervalID=setInterval(updateSongtrack,3000,stationID,stationStream);
+        buttonVisiblity(PLAYING)
+        isPlaying=true;
+        footer.style.visibility="visible"
+        playButtonDesign();
+      }
+      //error Status
+      function buttonVisiblity(status){
+
+        if(status===NOT_PLAYING){btnTopBar.style.visibility="hidden"}
+        if(status===PLAYING){btnTopBar.style.visibility="visible"}
+        if(status===ERINPLAYING){btnTopBar.style.visibility="hidden"}
+      }
+
+      ///Top bar  Button Play Status
+      btnTopBar.addEventListener('click',()=>{
+        //initializeCastApi()
+        refreshCastVariables()
+          //isPlaying=false;
+          if(castSession){
+              castPlayerControllerforAudio()
+          }
+          else{
+            if(isPlaying){
+              audioPlayer.pause()
+              audioPlayerPause()
+              console.log("play button condition :"+isPlaying)
+            }
+              else {audioPlayer.play();}
+              //console.log("play button condition :"+isPlaying)
+
+          }
+
+      })
+
+
+      //play button design
+      function playButtonDesign(){
+        if(isPlaying){
+          btnTopBar.innerHTML="II"
+        }
+        else{
+          btnTopBar.innerHTML=">"
+        }
+      }
+      /******** Mute Button Functions ********/
+      //Mute Functionality for Button
+      //Mute Functionality
+      btnMute.addEventListener("click",()=>{
+        if(isMute){
+          audioPlayer.muted=false;
+        }
+        else{
+          audioPlayer.muted=true;
+        }
+
+      })
+
+
+      //mute button Functionality
+      function muteButtonDesign(){
+      if(!isMute) btnMute.src=unmuteImage;
+      else btnMute.src=btnMute.src=muteImage
+      }
+
+/*********** UP BUTTON FOR SONG DISPLAY***************/
+    //button logic for upButton, which will show DIv
+    upButton.addEventListener('click',()=>{
+    if(isStreamAvailable!==null){
+      if(isSongDisplaying){
+        nowPlaying.visibility='collapse'
+        nowPlaying.style.height='0px'
+        upButton.classList.add("song_details_button_rotate")
+
+      }
+      else {
+        nowPlaying.visibility='visible'
+        nowPlaying.style.height='auto'
+        upButton.classList.remove("song_details_button_rotate")
+      }
+      isSongDisplaying=!isSongDisplaying
+      //upButton.classList.toggle('song_details_button_rotate')
+
+    }
+
+
+    })
+    //for getting data of what is playing
+    async function updateSongtrack(stationId,streamUrl){
+    // console.log(stationId)
+    // console.log(streamUrl)
+      if(streamUrl===null){
+        nowPlaying.visiblility='collapse'
+
+      }
+      else {
+        data =   await getDatafromStream(stationId,streamUrl)
+        if(data!== null){
+          nowPlayingSongImage.src=data.songImgUrl
+          nowPlayingSongName.innerHTML=data.title
+          nowPlayingSongArtist.innerHTML=data.artist
+          nowPlayingRadioShow.innerHTML=data.showName
+        }
+        //console.log(data)
+
+        }
+      }
+    //collapse up button
+    function collapseUpButtonatStart(){
+      nowPlaying.visibility='collapse'
+      nowPlaying.style.height='0px'
+      upButton.classList.add("song_details_button_rotate")
+    }
+
+
+
+//**************END OF FOOTER AUDIO PLAYER CONTROLS*************///
+
+//*****************ALL CONTROLS OF MEDIA PLAYER CHROME STARTS **************//
+// Audio player error Handeling
+    audioPlayer.addEventListener('error',(error)=>{
+      let code=error.target.error.code
+      let radioStation=radioStationName
+      if(code===4){
+        buttonVisiblity(ERINPLAYING)
+        alert(`Currently ${radioStation} is not available`)
+        stationName.innerText=radioStation+" Station Not Available"
+
+        isPlaying=false;
+        playButtonDesign();
+      }
+      console.log(error.target.error.code)
+
+    })
+    //audip player pauses
+    function audioPlayerPause(){
+      console.log("Radio Paused")
+      isPlaying=false;
+      playButtonDesign();
+
+    }
+    //audio player pause event listener, when someone pauses from button or bluetooth
+    audioPlayer.addEventListener('pause',()=>{
+      audioPlayerPause()
+    })
+    //audio player play event listener when someone plays radio from button or bluetooth
+    audioPlayer.addEventListener("play",()=>{
+      console.log("Radio Play")
+      isPlaying=true;
+      playButtonDesign();
+    })
+
+
+  //Mute Function
+  audioPlayer.addEventListener('volumechange',()=>{
+      console.log(audioPlayer.volume)
+    if(audioPlayer.muted===true||audioPlayer.volume==0){
+      console.log('Its Muted BE')
+      isMute=true
+      muteButtonDesign();
+    }
+    else{
+      console.log('its not muted')
+      isMute=false
+      muteButtonDesign();
+    }
+
+
+  })
+  ////*******************END OF ALL CHROME MEDIA PLAYER FUNCTIONS*************///
+
+  ///**********************START OF CHROME CAST MEDIA PLAYER *****************//
+  //cast playerController for uploading url into chrome cast device
+  async function  startRadioOnCast(streamUrl){
+    //initializeCastApi()
+    if(castSession){
+      console.log(streamUrl)
+        var mediaInfo = new chrome.cast.media.MediaInfo(streamUrl, "audio/mp3");
+       var request = await new chrome.cast.media.LoadRequest(mediaInfo);
+        if(castSession){
+          castSession.loadMedia(request).then(
+            function() { console.log('Load succeed'); },
+            function(errorCode) { console.log('Error code: ' + errorCode); });
+            var player = await new cast.framework.RemotePlayer();
+            castPlayerController= await new cast.framework.RemotePlayerController(player);
+
+    }
+  }
 }
+  ///controlling play button for audio player for cast - below toggles play and pause,
+  //rest is handeled by event listener at init function
+  function castPlayerControllerforAudio(){
+    //console.log("Cast Player "+isPlaying+castPlayerController)
+    //refreshCastVariables()
+    castPlayerController.playOrPause()
+
+}
+// checks whether any previous cast putton is present
+function checkAndUpdatePreviousCast()
+{
+  try
+  {
+    refreshCastVariables()
+    if(castSession)
+    {
+      console.log("CAST CHECK and Update");
+      let mediaSessionStatus = castSession.getMediaSession();
+      let castStationPlaying = mediaSessionStatus.media.contentId;
+      if(castStationPlaying)
+      {
+        for( const x in allStations)
+        {
+         if (castStationPlaying == allStations[x]["url"])
+         {
+           var currentStation=allStations[x];
+           setStationDetails(currentStation.id,currentStation.name,currentStation.logo,currentStation.stream)
+         }
+       }
+      }
+    }
+
+  }
+  catch(error)
+  {
+    console.log("CAST CURRENT PLAY ERRROR"+error);
+  }
+
+}
+
+//when cast is disabled and castSession is present,
+ //play button shifts to pauses so that user knows cast is disabled
+ function displayCastStoped()
+ {
+   if(castSession)
+   {
+     castSession = null;
+     isPlaying = false;
+     playButtonDesign();
+   }
+
+ }
+
+
+
   </script>
-
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 </html>
