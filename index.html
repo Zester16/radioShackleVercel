@@ -523,7 +523,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 11.01
+    version: 11.02
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -724,7 +724,8 @@
     cast.framework.CastContext.getInstance().setOptions({
        receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
      });
-     setTimeout(checkAndUpdatePreviousCast, 5000)
+
+     //setTimeout(checkAndUpdatePreviousCast, 5000)
      console.log("initialising Cast")
      castContext = cast.framework.CastContext.getInstance();
      castSession =   cast.framework.CastContext.getInstance().getCurrentSession();
@@ -735,9 +736,26 @@
     let player = new cast.framework.RemotePlayer();
     castPlayerController = new cast.framework.RemotePlayerController(player);
     ///CAST EVENT LISTENERS
+    //makes cast button to pause if castSession ends
+    //it displays what is playing if page is refreshed while cast is still happening
+    castContext.addEventListener(
+  cast.framework.CastContextEventType.SESSION_STATE_CHANGED,
+    function(event)
+     {
+      switch (event.sessionState) {
+        case cast.framework.SessionState.SESSION_STARTED: console.log(cast.framework.SessionState.SESSION_STARTED)
+        case cast.framework.SessionState.SESSION_RESUMED:checkAndUpdatePreviousCast()
+          break;
+        case cast.framework.SessionState.SESSION_ENDED: displayCastStoped();
+          console.log('CastContext: CastSession disconnected');
+
+          // Update locally as necessary
+          break;
+      }
+    })
+
     ///checks whether a radio station is playing on refresh. if a station is playing,
     //it will pass details of station to setStationDetails function
-
 
     //adding event listener to CastContext for pausing and playing media
       castPlayerController.addEventListener(
@@ -1076,7 +1094,17 @@ function checkAndUpdatePreviousCast()
 
 }
 
-//checks if
+//when cast is disabled and castSession is present,
+ //play button shifts to pauses so that user knows cast is disabled
+ function displayCastStoped()
+ {
+   if(castSession)
+   {
+     isPlaying = false;
+     playButtonDesign();
+   }
+
+ }
 
 
 
