@@ -83,7 +83,7 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         let nowPlaying=rep
         parsedData.artist = nowPlaying.artist
         parsedData.title=nowPlaying.title
-        parsedData.songImgUrl=nowPlaying.coverUrlS
+        parsedData.songImgUrl=nowPlaying.coverUrlM
 
       }
     }
