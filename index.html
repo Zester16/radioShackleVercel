@@ -135,7 +135,7 @@
           /* background-color: #fff2f2 */
 
         }
-        .radio_stations_body{
+        .radio_stations_body, .radio_stations_classic{
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -154,7 +154,7 @@
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          justify-content: space-between;
+          justify-content: flex-start;
           padding:2%;
         }
 
@@ -398,7 +398,7 @@
       /* Div Section*/
 
       /* Style for family favourites */
-      .radio_stations_family_favourite{
+      .radio_stations_family_favourite, .radio_stations_classic{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -495,6 +495,12 @@
   </div>
   <!-- Heqader for Virgin Radio -->
   <div class="favourite_header">
+  <img id="virgin_group_header_image" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png"/><span>Classic Radio Stations</span>
+  </div>
+  <div class="radio_stations_classic">
+  </div>
+  <!-- Heqader for Virgin Radio -->
+  <div class="favourite_header">
   <img id="virgin_group_header_image" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png"/><span>Virgin Group Radio Stations</span>
   </div>
   <div class="radio_stations_virgin">
@@ -523,7 +529,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 12.02
+    version: 12.03
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -612,11 +618,12 @@
     vradio_lebanon_fm:{id:"vradio_lebanon_fm",name:"Lebanon 89.5", country:"Lebanon",background:"virgin",fav:false,url:"http://node-26.zeno.fm/dwxw3p9vea0uv?rj-ttl=5&rj-tok=AAABdfuFcQ4AHao1lT3WKsmr6g",logo:"https://virginradiolb.com/assets/themes/TriTheme/images/logo.png",stream:null,streamType:false},
     vradio_all_stars:{id:"vradio_all_stars",name:"All Stars Lebanon 89.7", country:"Lebanon",background:"virgin",fav:false,url:"http://node-25.zeno.fm/h66yxnapga0uv?rj-ttl=5&rj-tok=AAABfHPP9RIA5LSgnhKkmu7Wmw",logo:"https://virginradiolb.com/assets/themes/TriTheme/images/logo-stars.png",stream:null,streamType:false},
     vradio_uk_fm:{id:"vradio_uk_fm",name:"Virgin UK", country:"UK",background:"virgin",fav:false,url:"https://radio.virginradio.co.uk/stream",logo:"https://virginradio.co.uk/virgin/assets/virginradiouk-thumbnail.png",stream:null,streamType:false},
-    jazz_fm_rm:{id:"jazz_fm_rm",name:"Jazz FM", country:"Romania",background:"white",fav:false,url:"https://s4.radio.co/s1e25bf273/listen",logo:"https://jazzfm.ro/assets/images/assets_logo.svg",stream:"https://jazzfm.ro/pn2.php",streamType:true},
-    classic_praha:{id:"classic_praha",name:"Classic Praha", country:"Chez Republic",background:"white",fav:false,url:"https://icecast8.play.cz/classic128.mp3", logo:"https://www.radio.net/images/broadcasts/f9/e8/12702/c300.png",stream:null,streamType:false},
-    mujrozhals_jazz:{id:"mujrozhals_jazz",name:"ČRo Jazz", country:"Chez Republic",background:"white",fav:false,url:"https://rozhlas.stream/jazz_mp3_128.mp3", logo:"https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png",stream:null,streamType:false},
-    radio_klassik_backup:{id:"radio_klassik_backup",name:"Radio Klassik BKP", country:"Germany",background:"white",fav:false,url:"https://edge04.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?",streamType:false},
-    lounge_fm_936:{id:"lounge_fm_936",name:"Lounge FM 93.6", country:"Austria",background:"dark",fav:false,url:"https://s35.derstream.net/ukwwien.mp3", logo:"https://www.lounge.fm/wp-content/themes/loungefm_2014/img/LFM_Logo_800.png",stream:"https://nowplaying.lounge.fm/npjson/LoungeFM?",streamType:true},
+    jazz_fm_rm:{id:"jazz_fm_rm",name:"Jazz FM", country:"Romania",background:"classic",fav:false,url:"https://s4.radio.co/s1e25bf273/listen",logo:"https://jazzfm.ro/assets/images/assets_logo.svg",stream:"https://jazzfm.ro/pn2.php",streamType:true},
+    classic_praha:{id:"classic_praha",name:"Classic Praha", country:"Checz Republic",background:"classic",fav:false,url:"https://icecast8.play.cz/classic128.mp3", logo:"https://www.radio.net/images/broadcasts/f9/e8/12702/c300.png",stream:null,streamType:false},
+    mujrozhals_jazz:{id:"mujrozhals_jazz",name:"ČRo Jazz", country:"Checz Republic",background:"classic",fav:false,url:"https://rozhlas.stream/jazz_mp3_128.mp3", logo:"https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png",stream:null,streamType:false},
+    radio_klassik_backup:{id:"radio_klassik_backup",name:"Radio Klassik BKP", country:"Germany",background:"classic",fav:false,url:"https://edge04.streams.klassikradio.de/klassikradio-deutschland", logo:"https://www.klassikradio.de//_nuxt/img/72ebcae.png",stream:"https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?",streamType:false},
+    lounge_fm_936:{id:"lounge_fm_936",name:"Lounge FM 93.6", country:"Austria",background:"classic",fav:false,url:"https://s35.derstream.net/ukwwien.mp3", logo:"https://www.lounge.fm/wp-content/themes/loungefm_2014/img/LFM_Logo_800.png",stream:"https://nowplaying.lounge.fm/npjson/LoungeFM?",streamType:true},
+    radio_classique:{id:"radio_classique",name:"radio classique", country:"France",background:"classic",fav:false,url:"https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3", logo:"https://upload.wikimedia.org/wikipedia/fr/3/36/Logo-radio_classique.svg",stream:"https://d3gf3bsqck8svl.cloudfront.net/direct-metadata/current.json?330161854.6324?",streamType:false},
 }
 
   //dynamically creating radio allStations
@@ -624,6 +631,7 @@
   let mainRadioDivDark=document.querySelector(".radio_stations_body_dark")
   let favRadioDiv=document.querySelector(".radio_stations_family_favourite")
   let virginRadioDiv=document.querySelector(".radio_stations_virgin")
+  let classicRadioDiv = document.querySelector(".radio_stations_classic")
 
   for(x in allStations){
     let station=allStations[x]
@@ -657,6 +665,9 @@
 
     //adding individual radio div to final div container
     if(station.background==="dark"){mainRadioDivDark.appendChild(newStation)}
+    else if(station.background === "classic"){
+      classicRadioDiv.appendChild(newStation)
+    }
     else if (station.background==="virgin") {
       logo.classList.add("img_square")
       virginRadioDiv.appendChild(newStation)
