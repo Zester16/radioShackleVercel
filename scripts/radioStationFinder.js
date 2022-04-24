@@ -86,6 +86,15 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.songImgUrl=nowPlaying.coverUrlM
 
       }
+      else if(stationName === "radio_classique")
+      {
+
+        let nowPlaying=rep
+        parsedData.artist = nowPlaying.auteur
+        parsedData.title=nowPlaying.titre
+        parsedData.songImgUrl=picUrl
+
+      }
     }
 
     return parsedData
