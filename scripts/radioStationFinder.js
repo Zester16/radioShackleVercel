@@ -32,7 +32,7 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.host=nowPlaying.shows.current.moderator.name
       }
       else if(stationName==='radio_rundfunk_914'){
-        let nowPlaying=rep[1]
+        let nowPlaying=rep[2]
         parsedData.title=nowPlaying.song_title
         parsedData.artist=nowPlaying.artist_name
         parsedData.songImgUrl=nowPlaying.covers.cover_art_url_xxl
