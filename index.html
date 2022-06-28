@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <!-- For Favourites header ROBOTO -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- songs now playing -->
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap" rel="stylesheet">
 
     <!-- For Station name in station selection -->
     <!--font-family: 'Noto Sans KR', sans-serif; -->
@@ -168,7 +170,9 @@
         padding:2%;
         margin: .5%;
         border-radius: 10%;
-  }
+        align-items: center;
+        text-align: center;
+      }
       .individual_radio_station:hover{
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         background-color:#FCA311;
@@ -213,19 +217,21 @@
       }
 
       /*Footer containing control button, radio station being played, image radio stations*/
+      /* background:#121212; */
       .footer{
         position: fixed;
         bottom: 0;
-        background:#121212;
+        background: #36454F;
         width: 100%;
-        border-top-left-radius:2%;
-        border-top-right-radius: 2%;
+        border-top-left-radius:40px;
+        border-top-right-radius: 40px;
         visibility: collapse;
         box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
         -moz-box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
         -webkit-box-shadow: 0 -2px 4px 0 rgb(0 0 0 / 0.2);
-        transition: .2s;
+
       }
+
       .footer_top{
         display: flex;
         flex-direction: row;
@@ -240,10 +246,22 @@
         display: flex;
         flex-direction: row;
         visibility: visible;
-        justify-content:space-between;
-        box-sizing: border-box;
-        color: white;
+        justify-content:space-around;
+        box-sizing: content-box;
+        align-items: center;
+        text-align: center;
+        color: skyblue;
+        
+
       }
+      @keyframes switchon{
+        from {
+          height: 0px;
+          }
+          to{
+            height: auto;
+          }
+    }
       .footer_bottom_off{
 
       }
@@ -279,6 +297,20 @@
         justify-content: space-between;
         transition: 2s;
 
+      }
+      /* Current Song being played font style */
+      #now_playing_song_name, #now_playing_song_artist{
+        font-family: 'Saira Condensed', sans-serif;
+        font-size: 1.4rem;
+      }
+      /* by word between song name and artist in now playing */
+      #now_playing_by{
+        font-family: 'Saira Condensed', sans-serif;
+        font-size: 1.4rem;
+        font-style: italic;
+      }
+      #now_playing_song_img{
+        border-radius: 60px;
       }
       /* DIv which holds both the below buttons */
       .audio_player_buttons{
@@ -450,6 +482,7 @@
       }
       #now_playing_station_name{
         font-size: .75em;
+        max-width: 120px;
       }
 
     .now_playing_header{
@@ -493,9 +526,9 @@
   <div class="radio_stations_family_favourite">
 
   </div>
-  <!-- Heqader for Virgin Radio -->
+  <!-- Heqader for Classic Radio Stations-->
   <div class="favourite_header">
-  <img id="virgin_group_header_image" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png"/><span>Classic Radio Stations</span>
+  <img id="virgin_group_header_image" src="svg_and_images/piano_key.png"/><span>Classic Radio Stations</span>
   </div>
   <div class="radio_stations_classic">
   </div>
@@ -529,7 +562,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 12.05
+    version: 12.06
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -568,7 +601,7 @@
           <img id="now_playing_song_img"src="">
         </div>
         <div class="now_playing_song_name">
-          <span id="now_playing_song_name"></span> by <span id="now_playing_song_artist"></span>
+          <span id="now_playing_song_name"></span> <span id="now_playing_by"> by </span> <span id="now_playing_song_artist"></span>
         </div>
         <div class="now_playing_song_artist">
 
