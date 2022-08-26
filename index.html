@@ -786,7 +786,8 @@
     }
     else{
       //commented code is for displaying cast whith no styles
-       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+      cast.framework.CastContext.getInstance().setOptions({
+       receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID});
     }
 
 
