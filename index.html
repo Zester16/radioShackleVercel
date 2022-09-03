@@ -562,7 +562,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 13.01
+    version: 13.02
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -658,8 +658,8 @@
     lounge_fm_936:{id:"lounge_fm_936",name:"Lounge FM 93.6", country:"Austria",background:"classic",fav:false,url:"https://s35.derstream.net/ukwwien.mp3", logo:"https://www.lounge.fm/wp-content/themes/loungefm_2014/img/LFM_Logo_800.png",stream:"https://nowplaying.lounge.fm/npjson/LoungeFM?",streamType:true},
     radio_classique:{id:"radio_classique",name:"Radio Classique", country:"France",background:"classic",fav:false,url:"https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3", logo:"https://upload.wikimedia.org/wikipedia/fr/3/36/Logo-radio_classique.svg",stream:"https://d3gf3bsqck8svl.cloudfront.net/direct-metadata/current.json?330161854.6324?",streamType:false},
     tamil_fm_894:{id:"tamil_fm_894",name:"Tamil FM 89.4", country:"UAE",background:"white",fav:false,url:"https://node-13.zeno.fm/pq1y91zes18uv?zs=LoVhu-nPRwCGUOSAghsrFg&rj-tok=AAABgOCW12kACaKvPTscIA-DFw&rj-ttl=5", logo:"https://tamil894fm.com/wp-content/uploads/2021/11/Logo.gif",stream:null,streamType:false},
-    test_fm:{id:"test_fm",name:"Big 96.3", country:"TEST",background:"white",fav:false,url:"https://corus.leanstream.co/CFMKFM?args=web_01", logo:"https://admin.corusradio.com/wp-content/uploads/sites/3/2017/12/radio-player-assets-logos_big-963.png",stream:"https://globalnewselection.s3.amazonaws.com/fm-playlist/results/CFMKFM_np.js",streamType:false},
-
+    test_fm:{id:"test_fm",name:"Sublime", country:"TEST",background:"white",fav:false,url:"https://22553.live.streamtheworld.com/SUBLIME.mp3?dist=sublime_website", logo:"https://sublime.nl/build/_assets/logo-O6GXIIFB.png",stream:"https://sublime.nl/playlist?_data=root",streamType:true},
+    test_fm_2:{id:"test_fm_2",name:"ClassicNL", country:"TEST",background:"white",fav:false,url:"https://22613.live.streamtheworld.com/CLASSICFMAAC.aac", logo:"https://www.classic.nl/images/logo-footer.png",stream:"https://np.tritondigital.com/public/nowplaying?mountName=CLASSICFMAAC&numberToFetch=1&eventType=track&request.preventCache=1662209413995",streamType:false},
 
 }
 
@@ -769,7 +769,7 @@
 
   initializeCastApi = function() {
   try{
-
+  //checks whether url is below, if yes then cast will display radioshackle logo
    const currentURL=window.location.href
     if(currentURL === "https://radioshackle-sjqq3.ondigitalocean.app/" ){
       cast.framework.CastContext.getInstance().setOptions({
