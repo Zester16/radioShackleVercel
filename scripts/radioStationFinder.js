@@ -95,6 +95,15 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.songImgUrl=picUrl
 
       }
+      else if(stationName === "test_fm")
+      {
+
+        let nowPlaying=rep.nowPlaying
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.song
+        parsedData.songImgUrl=picUrl
+
+      }
     }
 
     return parsedData
@@ -116,7 +125,8 @@ async function req(url){
 
 async function reqRS(stationName){
   try {
-    let url = `https://radioshackle.herokuapp.com/${stationName}`
+    //let url = `https://radioshackle.herokuapp.com/${stationName}`
+    let url = `https://radioshackle-data-pull.ey.r.appspot.com/${stationName}`
     //let headers={headers:{Accept: 'application/json', 'Access-Control-Allow-Origin': '*'}}
     let result=await axios.get(url)
     //console.log(result.data)
