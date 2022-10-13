@@ -95,7 +95,7 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.songImgUrl=picUrl
 
       }
-      else if(stationName === "test_fm")
+      else if(stationName === "sublime_nl")
       {
 
         let nowPlaying=rep.nowPlaying
