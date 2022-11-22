@@ -104,6 +104,7 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.songImgUrl=picUrl
 
       }
+      //else if(stationName === )
     }
 
     return parsedData
@@ -137,7 +138,7 @@ async function reqRS(stationName){
   }
   catch (e)
   {
-    console.log("Q102 Error"+e)
+    console.log("Station Finder Error: "+e)
   } finally {
 
   }
