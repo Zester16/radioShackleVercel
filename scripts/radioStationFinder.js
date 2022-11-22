@@ -98,13 +98,38 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
       else if(stationName === "sublime_nl")
       {
 
-        let nowPlaying=rep.nowPlaying
+        let nowPlaying=rep.nowPlayingV2
         parsedData.artist = nowPlaying.artist
-        parsedData.title=nowPlaying.song
-        parsedData.songImgUrl=picUrl
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=nowPlaying.SongData.artwork
 
       }
-      //else if(stationName === )
+      else if(stationName === "one_fm_913"){
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
+        console.log(nowPlaying.childNodes[3].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[3].lastChild.data
+        parsedData.title = nowPlaying.childNodes[2].lastChild.data
+        parsedData.songImgUrl =picUrl
+        //console.log(parsedData)
+      }
+      else if(stationName === "money_fm_893"){
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
+        console.log(nowPlaying.childNodes[3].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[3].lastChild.data
+        parsedData.title = nowPlaying.childNodes[2].lastChild.data
+        parsedData.songImgUrl =picUrl
+
+      }
+      else if(stationName === "classic_nl"){
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
+        console.log(nowPlaying.childNodes[3].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[5].lastChild.data
+        parsedData.title = nowPlaying.childNodes[3].lastChild.data
+        parsedData.songImgUrl =picUrl
+      }
     }
 
     return parsedData
@@ -144,7 +169,8 @@ async function reqRS(stationName){
   }
 }
 //checks response and sends across
-function routeRequest()
+function xmlParserReturn(text)
 {
-
+  parser = new DOMParser();
+  return parser.parseFromString(text,"text/xml");
 }

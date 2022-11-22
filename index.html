@@ -563,7 +563,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 14.00
+    version: 14.01
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -629,7 +629,7 @@
 
   let allStations={
     one_fm_913:{id:"one_fm_913",name:"One FM 913",country:"singapore",background:"white",fav:true,url:"https://23683.live.streamtheworld.com/ONE_FM_913.mp3",logo:"https://www.onefm.sg/wp-content/assets/3/img/NAV_01_Logo_913-new.svg",stream:"https://np.tritondigital.com/public/nowplaying?mountName=ONE_FM_913AAC&numberToFetch=1&eventType=track",streamType:false},
-    money_fm_893:{id:"money_fm_893",name:"Money FM 893",country:"singapore",background:"white",fav:false,url:"https://23683.live.streamtheworld.com/MONEY_893.mp3",logo:"https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg",stream:null,streamType:false},
+    money_fm_893:{id:"money_fm_893",name:"Money FM 893",country:"singapore",background:"white",fav:false,url:"https://23683.live.streamtheworld.com/MONEY_893.mp3",logo:"https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg",stream:"https://np.tritondigital.com/public/nowplaying?mountName=MONEY_893AAC&numberToFetch=1&eventType=track",streamType:false},
     nrj_zurich_109:{id:"nrj_zurich_109",name:"Energy Zurich 109",country:"Swiss",background:"white",fav:false,url:"https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3", logo:"https://upload.wikimedia.org/wikipedia/en/5/54/Logo_NRJ_2016.png",stream:null,streamType:false},
     q_fm_102:{id:"q_fm_102",name:"Dublins Q102",country:"Ireland",background:"white",fav:true,url:"https://wg.cdn.tibus.net/q102MP3128", logo:"https://mm.aiircdn.com/614/5d5fcba7241c4.png",stream:"https://www.q102.ie/radiofeed_request/?a=newer",streamType:true},
     wrs_fm:{id:"wrs_fm",name:"World Rasio Swiss",country:"Swiss",background:"white",fav:false,url:"https://streamingr.broadcastradio.com:10295/wrs",logo:"https://mm.aiircdn.com/45/581c75ebd31ac.png",stream:null,streamType:false},
@@ -892,7 +892,7 @@
     }
   }
 //********************RADIO PLAYER FUNCTIONS*************************//
-  ///base class which handles setting of stream data
+  ///base class which handles setting of stream data, images, and pauses whats now playing stream info
   class RadioStationData{
       constructor(stationID,stationName,stationLogo,stationStream,streamType){
         this.stationID = stationID
@@ -908,7 +908,7 @@
          if(this.intervalID){
            this.stopStreamData()
          }
-         this.intervalID=setInterval(updateSongtrack,3000,this.stationID,this.stationStream,this.radioStationLogo,this.streamType);
+         this.intervalID=setInterval(updateSongtrack,3000,this.stationID,this.stationStream,this.stationLogo,this.streamType);
       }
       stopStreamData(){
         console.log("streams stop: "+this.intervalID)
@@ -969,7 +969,17 @@
         clearTimeout(updateSongtrack);
         stationLogo.src =radioStationLogo
         isStreamAvailable=stationStream
-        stationDetails = new RadioStationData(stationID,cradioStationName,radioStationLogo,stationStream,streamType)
+        if(stationDetails === null){
+          stationDetails = new RadioStationData(stationID,cradioStationName,radioStationLogo,stationStream,streamType)
+        }
+        else{
+          stationDetails.stationID = stationID
+          stationDetails.stationName = cradioStationName
+          stationDetails.stationLogo = radioStationLogo
+          stationDetails.stationStream = stationStream
+          stationDetails.streamType = streamType
+        }
+
         stationDetails.startStreamData()
         //intervalID=setInterval(updateSongtrack,3000,stationID,stationStream,radioStationLogo,streamType);
         buttonVisiblity(PLAYING)
@@ -1060,6 +1070,9 @@
       isSongDisplaying=!isSongDisplaying
       //upButton.classList.toggle('song_details_button_rotate')
 
+    }
+    else {
+      alert(`No Now playing Strean is available for ${stationDetails.stationName}`)
     }
 
 
