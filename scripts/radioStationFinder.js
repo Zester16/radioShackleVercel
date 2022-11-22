@@ -126,7 +126,9 @@ async function req(url){
 async function reqRS(stationName){
   try {
     //let url = `https://radioshackle.herokuapp.com/${stationName}`
-    let url = `https://radioshackle-data-pull.ey.r.appspot.com/${stationName}`
+    //https://radioshackle-data-pull.ey.r.appspot.com/${stationName}
+    //
+    let url = `https://radioshackle-data-pull-211122.ue.r.appspot.com/${stationName}`
     //let headers={headers:{Accept: 'application/json', 'Access-Control-Allow-Origin': '*'}}
     let result=await axios.get(url)
     //console.log(result.data)
