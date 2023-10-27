@@ -16,10 +16,10 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
     let parsedData={title:null,artist:null,songImgUrl:null,showName:null,host:null,}
     if(rep!==null){
       if(stationName=='radio_klassik' || stationName=="radio_klassik_backup" ){
-        let nowPlaying=rep[1]
-         parsedData.title=nowPlaying.song_title
-         parsedData.artist=nowPlaying.artist_name
-         parsedData.songImgUrl=nowPlaying.stream_logo
+        let nowPlaying=rep
+         parsedData.title=nowPlaying.song
+         parsedData.artist=nowPlaying.artist
+         parsedData.songImgUrl=nowPlaying.cover
       }
       else if(stationName==='radio_bern_1'){
 

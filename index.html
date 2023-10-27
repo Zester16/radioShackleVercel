@@ -137,7 +137,7 @@
           /* background-color: #fff2f2 */
 
         }
-        .radio_stations_body, .radio_stations_classic{
+        .radio_stations_body, .radio_stations_classic, .radio_station_test{
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -555,6 +555,9 @@
     <div class="radio_stations_body_dark">
 
     </div>
+    <div class="radio_station_test">
+
+    </div>
     <div class="audio_player">
 
       <audio  id="audio_player" autoplay controls preload='auto'>
@@ -563,7 +566,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 15.07
+    version: 16.01
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -870,7 +873,7 @@ let allStations={
 		"fav": true,
 		"url": "https://klassikr.streamabc.net/klr-krdnational-mp3-192-8877033",
 		"logo": "https://upload.klassikradio.de/production/static/1659521233035/img/72ebcae.png",
-		"stream": "https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3",
+		"stream": "https://api.streamabc.net/metadata/channel/klassikr-live.json",
 		"streamType": false
 	},
 	"radio_rundfunk_914": {
@@ -1070,7 +1073,40 @@ let allStations={
 		"logo": "https://www.radiogilli.com/assets/frontend/img/player-bg.jpg",
 		"stream": null,
 		"streamType": false
-	}
+	},
+	"rsc_swiss": {
+		"id": "rsc_swiss",
+		"name": "Radio Swiss Classic",
+		"country": "ch",
+		"background": "test",
+		"fav": false,
+		"url": "https://stream.srg-ssr.ch/m/rsc_de/mp3_128",
+		"logo": "https://www.radioswissclassic.ch/assets/logos-claim/rsc-logo-claim-tablet@2x-56088a0ce569c8d6c83e48bfaf345635.png",
+		"stream": "https://io-2.ssatr.ch/socket.io/?EIO=3&transport=polling&t=OiTx7j-&sid=_8QGOuFEOMS9u_ist1c-",
+		"streamType": false
+	},
+  "jazz_fm_fr": {
+    "id": "jazz_fm_fr",
+    "name": "Jazz FM France",
+    "country": "ch",
+    "background": "test",
+    "fav": false,
+    "url": "https://jazzradio.ice.infomaniak.ch/jazzradio-monaco.aac?i=79074",
+    "logo": "https://www.jazzradio.fr/media/option/logo-jazzradio-52715.webp",
+    "stream": "https://www.jazzradio.fr/winradio/prog.xml?_=1697023839694",
+    "streamType": false
+  },
+  "m_radio_fr": {
+    "id": "m_radio_fr",
+    "name": "M Radio",
+    "country": "ch",
+    "background": "test",
+    "fav": false,
+    "url": "https://mradio-lyon.ice.infomaniak.ch/mradio-lyon.aac?i=24508",
+    "logo": "https://mradio.fr/media/option/logo.webp",
+    "stream": "https://mradio.fr/winradio/prog.xml",
+    "streamType": false
+  }
 }
   //dynamically creating radio allStations
   let mainRadioDiv=document.querySelector(".radio_stations_body")
@@ -1078,6 +1114,7 @@ let allStations={
   let favRadioDiv=document.querySelector(".radio_stations_family_favourite")
   let virginRadioDiv=document.querySelector(".radio_stations_virgin")
   let classicRadioDiv = document.querySelector(".radio_stations_classic")
+  const testRadioDiv =document.querySelector(".radio_station_test")
 
   for(x in allStations){
     let station=allStations[x]
@@ -1117,6 +1154,9 @@ let allStations={
     else if (station.background==="virgin") {
       logo.classList.add("img_square")
       virginRadioDiv.appendChild(newStation)
+    }
+    else if(station.background ==="test"){
+      testRadioDiv.appendChild(newStation)
     }
     else{mainRadioDiv.appendChild(newStation)}
     if(station.fav===true){
