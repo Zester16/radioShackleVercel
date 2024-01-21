@@ -566,7 +566,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 16.01
+    version: 16.02
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -674,7 +674,7 @@ let allStations={
 		"background": "white",
 		"fav": false,
 		"url": "https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3",
-		"logo": "https://upload.wikimedia.org/wikipedia/en/5/54/Logo_NRJ_2016.png",
+		"logo": "https://cdn.energy.ch/energych-broadcast/covers/channels/logo_v2_bern_1638178870.svg",
 		"stream": null,
 		"streamType": false
 	},
@@ -772,7 +772,7 @@ let allStations={
 		"country": "my",
 		"background": "dark",
 		"fav": false,
-		"url": "http://23743.live.streamtheworld.com/BFMAAC.aac",
+		"url": "https://22273.live.streamtheworld.com/BFMAAC.aac",
 		"logo": "https://www.bfm.my/themes/bfmmy/assets/images/bfm-logo.jpg",
 		"stream": null,
 		"streamType": false
@@ -872,7 +872,7 @@ let allStations={
 		"background": "white",
 		"fav": true,
 		"url": "https://klassikr.streamabc.net/klr-krdnational-mp3-192-8877033",
-		"logo": "https://upload.klassikradio.de/production/static/1659521233035/img/72ebcae.png",
+		"logo": "https://api.streamabc.net/coverimages/cover/krrotid/373408/klassikr-live?default=channelLogo%2FKR_Logo_Player_2.0_256x256.png",
 		"stream": "https://api.streamabc.net/metadata/channel/klassikr-live.json",
 		"streamType": false
 	},
@@ -993,7 +993,7 @@ let allStations={
 		"background": "white",
 		"fav": false,
 		"url": "https://centova.aarenworld.com/proxy/894tamilfm/stream",
-		"logo": "https://tamil894fm.com/wp-content/uploads/2021/11/Logo.gif",
+		"logo": "https://tamil894fm.com/wp-content/uploads/2024/01/sound.gif",
 		"stream": null,
 		"streamType": false
 	},
@@ -1078,35 +1078,46 @@ let allStations={
 		"id": "rsc_swiss",
 		"name": "Radio Swiss Classic",
 		"country": "ch",
-		"background": "test",
+		"background": "classic",
 		"fav": false,
 		"url": "https://stream.srg-ssr.ch/m/rsc_de/mp3_128",
 		"logo": "https://www.radioswissclassic.ch/assets/logos-claim/rsc-logo-claim-tablet@2x-56088a0ce569c8d6c83e48bfaf345635.png",
 		"stream": "https://io-2.ssatr.ch/socket.io/?EIO=3&transport=polling&t=OiTx7j-&sid=_8QGOuFEOMS9u_ist1c-",
 		"streamType": false
 	},
-  "jazz_fm_fr": {
-    "id": "jazz_fm_fr",
-    "name": "Jazz FM France",
-    "country": "ch",
-    "background": "test",
-    "fav": false,
-    "url": "https://jazzradio.ice.infomaniak.ch/jazzradio-monaco.aac?i=79074",
-    "logo": "https://www.jazzradio.fr/media/option/logo-jazzradio-52715.webp",
-    "stream": "https://www.jazzradio.fr/winradio/prog.xml?_=1697023839694",
-    "streamType": false
-  },
-  "m_radio_fr": {
-    "id": "m_radio_fr",
-    "name": "M Radio",
-    "country": "ch",
-    "background": "test",
-    "fav": false,
-    "url": "https://mradio-lyon.ice.infomaniak.ch/mradio-lyon.aac?i=24508",
-    "logo": "https://mradio.fr/media/option/logo.webp",
-    "stream": "https://mradio.fr/winradio/prog.xml",
-    "streamType": false
-  }
+	"jazz_fm_fr": {
+		"id": "jazz_fm_fr",
+		"name": "Jazz Radio ",
+		"country": "fr",
+		"background": "classic",
+		"fav": false,
+		"url": "https://jazzradio.ice.infomaniak.ch/jazzradio-monaco.aac?i=79074",
+		"logo": "https://www.jazzradio.fr/media/option/logo-jazzradio-52715.webp",
+		"stream": "https://www.jazzradio.fr/winradio/prog.xml?_=1697023839694",
+		"streamType": true
+	},
+	"m_radio_fr": {
+		"id": "m_radio_fr",
+		"name": "M Radio Lyon",
+		"country": "fr",
+		"background": "white",
+		"fav": false,
+		"url": "https://mradio-lyon.ice.infomaniak.ch/mradio-lyon.aac?i=24508",
+		"logo": "https://mradio.fr/media/option/logo.webp",
+		"stream": "https://mradio.fr/winradio/prog.xml",
+		"streamType": true
+	},
+	"axr_hkng": {
+		"id": "axr_hkng",
+		"name": "asia expact radio",
+		"country": "hk",
+		"background": "test-dark",
+		"fav": false,
+		"url": "https://23743.live.streamtheworld.com/AXR.mp3",
+		"logo": "https://content.audiospace.co/stations/210/files/Logos/AXR%20WHITE%20TRANSPARENT%20600x400.png",
+		"stream": "https://nowplaying.audiospace.co/210/currentlyPlaying",
+		"streamType": true
+	}
 }
   //dynamically creating radio allStations
   let mainRadioDiv=document.querySelector(".radio_stations_body")
@@ -1155,7 +1166,7 @@ let allStations={
       logo.classList.add("img_square")
       virginRadioDiv.appendChild(newStation)
     }
-    else if(station.background ==="test"){
+    else if((station.background ==="test-white")|| (station.background==="test-dark")){
       testRadioDiv.appendChild(newStation)
     }
     else{mainRadioDiv.appendChild(newStation)}
