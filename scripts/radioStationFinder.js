@@ -107,8 +107,8 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
       else if(stationName === "one_fm_913"){
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
-        console.log(nowPlaying.childNodes[3].lastChild.data)
-        parsedData.artist = nowPlaying.childNodes[3].lastChild.data
+        //console.log(nowPlaying.childNodes[3].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[4].lastChild.data
         parsedData.title = nowPlaying.childNodes[2].lastChild.data
         parsedData.songImgUrl =picUrl
         //console.log(parsedData)
@@ -116,7 +116,7 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
       else if(stationName === "money_fm_893"){
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
-        console.log(nowPlaying.childNodes[3].lastChild.data)
+        //console.log(nowPlaying.childNodes[3].lastChild.data)
         parsedData.artist = nowPlaying.childNodes[3].lastChild.data
         parsedData.title = nowPlaying.childNodes[2].lastChild.data
         parsedData.songImgUrl =picUrl
@@ -125,10 +125,22 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
       else if(stationName === "classic_nl"){
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
-        console.log(nowPlaying.childNodes[3].lastChild.data)
+        //console.log(nowPlaying.childNodes[3].lastChild.data)
         parsedData.artist = nowPlaying.childNodes[5].lastChild.data
         parsedData.title = nowPlaying.childNodes[3].lastChild.data
         parsedData.songImgUrl =picUrl
+      }
+      else if(stationName === "axr_hkng"){
+        let nowPlaying=rep
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.song
+        parsedData.songImgUrl=nowPlaying.cover
+      }
+      else if (stationName === "jazz_clsq_fr") {
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
+        
+
       }
     }
 
