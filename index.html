@@ -196,14 +196,21 @@
       }
       /* All images */
       img{
-              max-width: 120px;
-              height:60px;
-              margin: 5%;
-            }
+          max-width: 120px;
+          height:60px;
+          margin: 5%;
+        }
       .img_square{
         width: 75px;
         height:75px;
         margin: 5px;
+      }
+      .img_dark{
+        max-width: 120px;
+        height:60px;
+        margin:5%;
+        background-color: black;
+        border-radius: 3px;
       }
       /* Button with Up Arrow to show Div */
       #song_details_button{
@@ -379,7 +386,13 @@
       img{
         width: 120px;
         height:90px;
-        padding:5%;
+        margin:5%;
+      }
+      .img_dark{
+        width: 120px;
+        height:90px;
+        margin:5%;
+        background-color: black;
       }
       .img_square{
         width: 90px;
@@ -431,7 +444,7 @@
       /* Div Section*/
 
       /* Style for family favourites */
-      .radio_stations_family_favourite, .radio_stations_classic{
+      .radio_stations_family_favourite, .radio_stations_classic, .radio_station_test{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -566,7 +579,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 16.06
+    version: 16.08
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -818,7 +831,7 @@ let allStations={
 		"fav": false,
 		"url": "https://chmedia.streamabc.net/79-virginrockch-mp3-192-2872456",
 		"logo": "https://upload.wikimedia.org/wikipedia/commons/d/d1/VirginRadio.png",
-		"stream": "https://www.virginradio.ch/api/pub/gql/virginrock/AudioLiveData/e0c0de0fa34937485951a3a3c1fb2aaffc94311e",
+		"stream": "https://www.virginradio.ch/api/pub/gql/virginrock/AudioLiveData/e0c0de0fa34937485951a3a3c1fb2aaffc94311e??ttl=10&variables=%7B%22streamName%22%3A%22virgin.rock%22%7D",
 		"streamType": true
 	},
 	"bloomberg_fm": {
@@ -993,7 +1006,7 @@ let allStations={
 		"background": "white",
 		"fav": false,
 		"url": "https://centova.aarenworld.com/proxy/894tamilfm/stream",
-		"logo": "https://tamil894fm.com/wp-content/uploads/2024/01/sound.gif",
+		"logo": "https://tamil894fm.com/wp-content/uploads/2024/03/sound.gif",
 		"stream": null,
 		"streamType": false
 	},
@@ -1081,7 +1094,7 @@ let allStations={
 		"background": "classic",
 		"fav": false,
 		"url": "https://stream.srg-ssr.ch/m/rsc_de/mp3_128",
-		"logo": "https://www.radioswissclassic.ch/assets/logos-claim/rsc-logo-claim-tablet@2x-56088a0ce569c8d6c83e48bfaf345635.png",
+		"logo": "https://www.radioswissclassic.ch/_nuxt/img/rsc-logo-claim-desktop.520c5d8.png",
 		"stream": "https://io-2.ssatr.ch/socket.io/?EIO=3&transport=polling&t=OiTx7j-&sid=_8QGOuFEOMS9u_ist1c-",
 		"streamType": false
 	},
@@ -1127,6 +1140,28 @@ let allStations={
 		"url": "https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-64.aac?i=63550",
 		"logo": "https://www.jazzradio.fr/media/radio/thumb/160x160_jazz-et-classique.webp",
 		"stream": "https://www.jazzradio.fr/winradio/prog20.xml",
+		"streamType": false
+	},
+	"std_brssls": {
+		"id": "std_brssls",
+		"name": "Studio Brussels",
+		"country": "be",
+		"background": "test-white",
+		"fav": false,
+		"url": "http://icecast.vrtcdn.be/stubru-high.mp3",
+		"logo": "https://www.vrt.be/content/dam/vrtvideo/branding/logos/stubru/v3/primary.svg",
+		"stream": "https://www.vrt.be/vrtnu-api/graphql/public/v1",
+		"streamType": false
+	},
+	"sg_symph_924": {
+		"id": "sg_symph_924",
+		"name": "Symphony 924",
+		"country": "sg",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://22903.live.streamtheworld.com/SYMPHONY924_PREM.aac?dist=MPL&autoplay=0&tdsdk=js-2.9&swm=true&pname=TDSdk&pversion=2.9&banners=300x250%2C728x90&burst-time=15&sbmid=d21a3426-6054-4a89-b407-0af223221a5b",
+		"logo": "https://onecms-res.cloudinary.com/image/upload/v1678108247/mediacorp/mel/image/2023-03/s924.png",
+		"stream": "https://np.tritondigital.com/public/nowplaying?mountName=SYMPHONY924AAC&numberToFetch=50&eventType=track",
 		"streamType": false
 	}
 }
@@ -1178,6 +1213,9 @@ let allStations={
       virginRadioDiv.appendChild(newStation)
     }
     else if((station.background ==="test-white")|| (station.background==="test-dark")){
+      if(station.background==="test-dark"){
+        logo.classList.add("img_dark")
+      }
       testRadioDiv.appendChild(newStation)
     }
     else{mainRadioDiv.appendChild(newStation)}
