@@ -117,17 +117,16 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
         //console.log(nowPlaying.childNodes[3].lastChild.data)
-        parsedData.artist = nowPlaying.childNodes[3].lastChild.data
+        parsedData.artist = nowPlaying.childNodes[4].lastChild.data
         parsedData.title = nowPlaying.childNodes[2].lastChild.data
         parsedData.songImgUrl =picUrl
 
       }
       else if(stationName === "classic_nl"){
-        const xmlFile = xmlParserReturn(rep)
-        const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
+        const nowPlaying = rep.current
         //console.log(nowPlaying.childNodes[3].lastChild.data)
-        parsedData.artist = nowPlaying.childNodes[5].lastChild.data
-        parsedData.title = nowPlaying.childNodes[3].lastChild.data
+        parsedData.artist = nowPlaying.artist
+        parsedData.title = nowPlaying.title
         parsedData.songImgUrl =picUrl
       }
       else if(stationName === "axr_hkng"){
@@ -136,11 +135,20 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.title=nowPlaying.song
         parsedData.songImgUrl=nowPlaying.cover
       }
-      else if (stationName === "jazz_clsq_fr") {
+      else if (stationName === "sg_symph_924") {
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
-        
-
+        //console.log(nowPlaying.childNodes[2].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[3].lastChild.data
+        parsedData.title=nowPlaying.childNodes[2].lastChild.data
+        parsedData.songImgUrl=picUrl
+      }
+      else if(stationName==="jazz_fm_fr" || stationName === "jazz_clsq_fr"){
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("prog")[0].childNodes[0]
+        parsedData.artist = nowPlaying.childNodes[2].childNodes[0].nodeValue
+        parsedData.title=nowPlaying.childNodes[3].childNodes[0].nodeValue
+        parsedData.songImgUrl=nowPlaying.childNodes[5].childNodes[0].nodeValue
       }
     }
 
@@ -163,10 +171,12 @@ async function req(url){
 
 async function reqRS(stationName){
   try {
-    //let url = `https://radioshackle.herokuapp.com/${stationName}`
+
     //https://radioshackle-data-pull.ey.r.appspot.com/${stationName}
-    //
+    //working
     let url = `https://radioshackle-data-pull-211122.ue.r.appspot.com/${stationName}`
+    //let url = `http://localhost:3000/${stationName}`
+
     //let headers={headers:{Accept: 'application/json', 'Access-Control-Allow-Origin': '*'}}
     let result=await axios.get(url)
     //console.log(result.data)
