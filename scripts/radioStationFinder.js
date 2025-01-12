@@ -135,6 +135,13 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.title=nowPlaying.song
         parsedData.songImgUrl=nowPlaying.cover
       }
+      else if(stationName === "vradio_uk_fm"){
+        let nowPlaying=rep.recentlyPlayed[0]
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=rep.onAirNow.images[0].url
+        parsedData.showName= rep.onAirNow.title;
+      }
       else if (stationName === "sg_symph_924") {
         const xmlFile = xmlParserReturn(rep)
         const nowPlaying = xmlFile.getElementsByTagName("nowplaying-info-list")[0].childNodes[0]
@@ -142,6 +149,14 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.artist = nowPlaying.childNodes[3].lastChild.data
         parsedData.title=nowPlaying.childNodes[2].lastChild.data
         parsedData.songImgUrl=picUrl
+      }
+      else if (stationName === "virgin_radio_fr") {
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("prog")[0].childNodes[0]
+        //console.log(nowPlaying.childNodes[2].lastChild.data)
+        parsedData.artist = nowPlaying.childNodes[2].lastChild.data
+        parsedData.title=nowPlaying.childNodes[3].lastChild.data
+        parsedData.songImgUrl=nowPlaying.childNodes[4].lastChild.data
       }
       else if(stationName==="jazz_fm_fr" || stationName === "jazz_clsq_fr"){
         const xmlFile = xmlParserReturn(rep)
