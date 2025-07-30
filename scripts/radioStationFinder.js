@@ -165,6 +165,13 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.title=nowPlaying.childNodes[3].childNodes[0].nodeValue
         parsedData.songImgUrl=nowPlaying.childNodes[5].childNodes[0].nodeValue
       }
+      else if(stationName==="m_radio_fr"){
+        const xmlFile = xmlParserReturn(rep)
+        const nowPlaying = xmlFile.getElementsByTagName("prog")[0].childNodes[0]
+        parsedData.artist = nowPlaying.childNodes[2].childNodes[0].nodeValue
+        parsedData.title=nowPlaying.childNodes[3].childNodes[0].nodeValue
+        parsedData.songImgUrl=nowPlaying.childNodes[4].childNodes[0].nodeValue
+      }
     }
 
     return parsedData
