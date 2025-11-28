@@ -579,7 +579,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 17.00
+    version: 17.01
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -961,9 +961,9 @@ let allStations={
 		"country": "cz",
 		"background": "classic",
 		"fav": false,
-		"url": "https://rozhlas.stream/jazz_mp3_128.mp3",
+		"url": "https://rozhlas.stream/jazz_high.aac",
 		"logo": "https://upload.wikimedia.org/wikipedia/commons/a/a8/CRo_Jazz_logo.png",
-		"stream": null,
+		"stream": "https://croapi.cz/data/v2/playlist/now/jazz.json",
 		"streamType": false
 	},
 	"radio_klassik_backup": {
@@ -1040,7 +1040,7 @@ let allStations={
 		"fav": false,
 		"url": "https://22553.live.streamtheworld.com/SUBLIME.mp3?dist=sublime_website",
 		"logo": "https://api.radioveronica.nl/media/iuapdvow/sublime-new-website-programmas_1-1_logo.png?format=webp",
-		"stream": "https://sublime.nl/playlist?_data=root",
+		"stream": "https://api.mediahuisradio.nl/api/nowplaying/playlist?stationKey=sublime&brand=sublime",
 		"streamType": true
 	},
 	"classic_nl": {
@@ -1175,6 +1175,17 @@ let allStations={
 		"stream": "https://virginradio.fr/winradio/prog.xml",
 		"streamType": true
 	},
+	"m105_ca_fr": {
+		"id": "m105_ca_fr",
+		"name": "M 105",
+		"country": "ca",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://26373.live.streamtheworld.com/CFXMFMAAC.aac",
+		"logo": "https://m105.ca/wp-content/uploads/2023/11/logo-M105-radio-granby.svg",
+		"stream": "https://np.tritondigital.com/public/nowplaying?mountName=CFXMFMAAC&numberToFetch=20&eventType=track",
+		"streamType": true
+	},
 	"blm_rdio_nyrk": {
 		"id": "blm_rdio_nyrk",
 		"name": "Bloomberg Radio Newyork",
@@ -1212,7 +1223,7 @@ let allStations={
 		"id": "club_fm_tirane_al",
 		"name": "Club FM",
 		"country": "al",
-		"background": "white",
+		"background": "test-white",
 		"fav": false,
 		"url": "https://cp1.sednastream.com/proxy/clubfm?mp=/stream",
 		"logo": "https://clubfm.al/wp-content/uploads/2022/01/Logo_Orange.png",
@@ -1223,7 +1234,7 @@ let allStations={
 		"id": "radio_one_tirana_al",
 		"name": "Radio One Al",
 		"country": "al",
-		"background": "white",
+		"background": "test-white",
 		"fav": false,
 		"url": "https://cp1.sednastream.com/proxy/radioone94?mp=/stream",
 		"logo": "https://www.radioone.al/assets/16.png",
@@ -1245,7 +1256,7 @@ let allStations={
 		"id": "radio_886_cl_at",
 		"name": "Radio 886",
 		"country": "at",
-		"background": "white",
+		"background": "test-white",
 		"fav": false,
 		"url": "https://edge11.streamonkey.net/radio886-classicrock/stream/mp3?aggregator=886Website",
 		"logo": "https://radio886.at/img/streaks/logo886.png",
@@ -1256,10 +1267,10 @@ let allStations={
 		"id": "96x_us_wrox",
 		"name": "96 X WROX",
 		"country": "usa",
-		"background": "dark",
+		"background": "white",
 		"fav": false,
 		"url": "https://22973.live.streamtheworld.com/WROXFMAAC.aac",
-		"logo": "https://96x.fm/wp-content/uploads/2023/05/96x_inverted_60h.png",
+		"logo": "https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/2711/2025/09/10093606/wrox-logo-blk.webp",
 		"stream": null,
 		"streamType": false
 	},
@@ -1278,11 +1289,44 @@ let allStations={
 		"id": "hi_fm_959_omn",
 		"name": "Hi FM 95.9",
 		"country": "om",
-		"background": "white",
+		"background": "test-white",
 		"fav": false,
 		"url": "https://listen-hifmtemp.sharp-stream.com/hifmmid.mp3?_=51952",
 		"logo": "https://mm.aiircdn.com/165/5ba1eff9c53cf.png",
 		"stream": " wss://metadata.aiir.net/now-playing",
+		"streamType": false
+	},
+	"thallam_tamil_ch": {
+		"id": "thallam_tamil_ch",
+		"name": "Thallam",
+		"country": "ch",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://thaalam.out.airtime.pro/thaalam_b",
+		"logo": "https://www.thaalam.ch/assets/img/logo/thalam-logo.png",
+		"stream": null,
+		"streamType": false
+	},
+	"argovia_918_ch": {
+		"id": "argovia_918_ch",
+		"name": "argovia 91.8",
+		"country": "ch",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://chmedia.streamabc.net/79-argovia-mp3-192-3024993",
+		"logo": "https://ch.az-cdn.ch/static/5.18.4/argovia/device-icons/192x192.png",
+		"stream": "https://www.argovia.ch/api/pub/gql/argovia/AudioLiveData/f17ccec05a8805563325a43a632e960a37892c72?ttl=10&variables=%7B%22streamName%22%3A%22argovia.main%22%7D",
+		"streamType": false
+	},
+	"radio_pilatus_ch": {
+		"id": "radio_pilatus_ch",
+		"name": "radio pilatus",
+		"country": "ch",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://chmedia.streamabc.net/79-pilatus-mp3-192-4664468",
+		"logo": "https://static.az-cdn.ch/__ip/MMuXPr0d_KVZF98VcyEXYiSTzW0/f25bfb2fb04686dfb1879105b4e3cab3936383df/remote.adjust.rotate=0&remote.size.w=1024&remote.size.h=1024&local.crop.h=1024&local.crop.w=1024&local.crop.x=0&local.crop.y=0&r=2,radio-162x162",
+		"stream": "https://www.radiopilatus.ch/api/pub/gql/radiopilatus/AudioLiveData/f17ccec05a8805563325a43a632e960a37892c72?ttl=10&variables=%7B%22streamName%22%3A%22radiopilatus.main%22%7D",
 		"streamType": false
 	}
 }

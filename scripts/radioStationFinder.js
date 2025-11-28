@@ -172,6 +172,15 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.title=nowPlaying.childNodes[3].childNodes[0].nodeValue
         parsedData.songImgUrl=nowPlaying.childNodes[4].childNodes[0].nodeValue
       }
+      else if(stationName==="radio_pilatus_ch" || stationName==="argovia_918_ch"){
+        let nowPlaying=rep.data.audioPlayer.stream.live
+        let showDetails=rep.data.audioPlayer.shows.current
+        parsedData.artist = nowPlaying.interpret
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=nowPlaying.image.imageUrl
+        parsedData.showName=showDetails.title
+        parsedData.host=showDetails.moderator.name
+      }
     }
 
     return parsedData
