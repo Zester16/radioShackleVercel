@@ -181,6 +181,24 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.showName=showDetails.title
         parsedData.host=showDetails.moderator.name
       }
+      else if(stationName==="derti_athens_gr"){
+        let nowPlaying=rep.data.audioPlayer.stream.content.filter((pl)=>{if(pl["row_id"]===-2){return}})[0]
+        let showDetails=rep.data.audioPlayer.shows.current
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=nowPlaying.image
+
+        parsedData.host=showDetails.moderator.name
+      }
+      else if(stationName==="derti_athens_gr"){
+        let nowPlaying=rep.data.audioPlayer.stream.content.filter((pl)=>{if(pl["row_id"]===-2){return}})[0]
+        let showDetails=rep.data.audioPlayer.shows.current
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=nowPlaying.image
+
+        parsedData.host=showDetails.moderator.name
+      }
     }
 
     return parsedData
