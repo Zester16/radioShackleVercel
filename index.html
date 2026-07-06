@@ -579,7 +579,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 17.03
+    version: 17.05
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -653,7 +653,7 @@ let allStations={
 		"country": "sg",
 		"background": "white",
 		"fav": false,
-		"url": "https://22243.live.streamtheworld.com/MONEY_893.mp3",
+		"url": "https://28093.live.streamtheworld.com/MONEY_893.mp3",
 		"logo": "https://www.moneyfm893.sg/wp-content/assets/2/img/NAV_01_Logo_893.svg",
 		"stream": "https://np.tritondigital.com/public/nowplaying?mountName=MONEY_893AAC&numberToFetch=1&eventType=track",
 		"streamType": false
@@ -753,7 +753,7 @@ let allStations={
 		"background": "dark",
 		"fav": false,
 		"url": "https://securestreams2.autopo.st:1242/live",
-		"logo": "https://mybeat.fm/assets/images/beat_logo_2021.png",
+		"logo": "https://www.mybeat.fm/assets/logo-D1I1HVH0.png",
 		"stream": null,
 		"streamType": false
 	},
@@ -877,17 +877,6 @@ let allStations={
 		"logo": "https://radioshackle-sjqq3.ondigitalocean.app/svg_and_images/radiobern1.png",
 		"stream": "https://www.radiobern1.ch/api/pub/gql/radiobern/AudioLiveData/5b2fc943f2a94aa65b8c19a39f29d68e153cae65?ttl=10&variables=%7B%22streamName%22%3A%22radiobern.main%22%7D",
 		"streamType": true
-	},
-	"radio_klassik": {
-		"id": "radio_klassik",
-		"name": "Radio Klassik",
-		"country": "de",
-		"background": "white",
-		"fav": true,
-		"url": "https://klassikr.streamabc.net/klr-krdnational-mp3-192-8877033",
-		"logo": "https://api.streamabc.net/coverimages/cover/krrotid/373408/klassikr-live?default=channelLogo%2FKR_Logo_Player_2.0_256x256.png",
-		"stream": "https://api.streamabc.net/metadata/channel/klassikr-live.json",
-		"streamType": false
 	},
 	"radio_rundfunk_914": {
 		"id": "radio_rundfunk_914",
@@ -1153,6 +1142,17 @@ let allStations={
 		"stream": "https://np.tritondigital.com/public/nowplaying?mountName=SYMPHONY924AAC&numberToFetch=50&eventType=track",
 		"streamType": false
 	},
+	"nation_radio_uk": {
+		"id": "nation_radio_uk",
+		"name": "Nation Radio Uk",
+		"country": "uk",
+		"background": "white",
+		"fav": false,
+		"url": "https://listen-nation.sharp-stream.com/thamesradio.mp3",
+		"logo": "https://mmo.aiircdn.com/677/6851624ed7646.png",
+		"stream": "https://meta.nation.radio/api/now_playing",
+		"streamType": true
+	},
 	"virgin_radio_fr": {
 		"id": "virgin_radio_fr",
 		"name": "virgin radio france",
@@ -1226,7 +1226,7 @@ let allStations={
 		"background": "test-white",
 		"fav": false,
 		"url": "https://cp1.sednastream.com/proxy/clubfm?mp=/stream",
-		"logo": "https://clubfm.al/wp-content/uploads/2022/01/Logo_Orange.png",
+		"logo": "https://clubfm.al/wp-content/uploads/2026/05/Logo_Orange.png",
 		"stream": null,
 		"streamType": false
 	},
@@ -1362,15 +1362,15 @@ let allStations={
 		"stream": "https://derti.gr/app/now-playing.php?mk8997aj",
 		"streamType": false
 	},
-	"dr_pr_2_dk": {
-		"id": "dr_pr_2_dk",
-		"name": "DR PR2",
+	"dr_p_2_dk": {
+		"id": "dr_p_2_dk",
+		"name": "DR P2",
 		"country": "dk",
 		"background": "classic",
 		"fav": false,
 		"url": "https://live-icy.dr.dk/A/A04L.mp3",
 		"logo": "https://www.dr.dk/lyd/_next/static/media/p2.041e766f.svg",
-		"stream": null,
+		"stream": "https://api.dr.dk/radio/v5/schedules/all/now",
 		"streamType": false
 	},
 	"nova_coop_dk": {
@@ -1381,8 +1381,8 @@ let allStations={
 		"fav": false,
 		"url": "https://live-bauerdk.sharp-stream.com/nova_dk_mp3?",
 		"logo": "https://assets.planetradio.co.uk/img/ConfigWebListenBarLogoImageUrl/174.jpg?ver=1490690222",
-		"stream": null,
-		"streamType": false
+		"stream": "https://listenapi.planetradio.co.uk/api9.2/stations_nowplaying/DK?StationCode%5B%5D=nov&premium=1",
+		"streamType": true
 	},
 	"my_rock_dk": {
 		"id": "my_rock_dk",
@@ -1392,7 +1392,51 @@ let allStations={
 		"fav": false,
 		"url": "https://live-bauerdk.sharp-stream.com/myrock_dk_mp3",
 		"logo": "https://assets.planetradio.co.uk/img/ConfigWebHeaderLogoSVGImageUrl/176.svg?ver=1490690852",
+		"stream": "https://listenapi.planetradio.co.uk/api9.2/stations_nowplaying/DK?StationCode%5B%5D=myr&premium=1",
+		"streamType": true
+	},
+	"nogoum_100_6_eyp": {
+		"id": "nogoum_100_6_eyp",
+		"name": "Nougum 100.6",
+		"country": "egy",
+		"background": "test-dark",
+		"fav": false,
+		"url": "https://audio.nrpstream.com/listen/nogoumfm/radio.mp3",
+		"logo": "https://www.nogoumfm.net/wp-content/uploads/2019/12/logo-nogoum-1.png",
+		"stream": "https://audio.nrpstream.com/api/nowplaying_static/nogoumfm.json",
+		"streamType": false
+	},
+	"sfera_102_2_gr": {
+		"id": "sfera_102_2_gr",
+		"name": "Sfera 102.2",
+		"country": "gr",
+		"background": "test-white",
+		"fav": false,
+		"url": "https://sfera.live24.gr/sfera4132",
+		"logo": "https://sfera.gr/wp-content/uploads/2024/12/cropped-logo-1.png",
 		"stream": null,
+		"streamType": false
+	},
+	"radio_classique_ca": {
+		"id": "radio_classique_ca",
+		"name": "Radio Classique",
+		"country": "ca",
+		"background": "classic",
+		"fav": false,
+		"url": "https://listen.radioking.com/radio/256885/stream/301504",
+		"logo": "http://www.radioclassique.ca/upload/design/5d1cc4fcaad749.59987287.png",
+		"stream": "http://www.radioclassique.ca/cache/titreplayer4",
+		"streamType": false
+	},
+	"radar_pt_978": {
+		"id": "radar_pt_978",
+		"name": "Radar 978",
+		"country": "pt",
+		"background": "white",
+		"fav": false,
+		"url": "https://proic1.evspt.com/radar_aac",
+		"logo": "https://radarlisboa.fm/wp-content/uploads/2016/02/logo_abril-1.png",
+		"stream": "https://radarlisboa.fm/avaplayer/radiotext.txt",
 		"streamType": true
 	}
 }
