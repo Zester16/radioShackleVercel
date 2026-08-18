@@ -579,7 +579,7 @@
     </div>
   </div>
   <div class="version_information">
-    version: 17.06
+    version: 17.07
   </div>
   <!-- Holds Now playing and other details -->
   <div class="footer">
@@ -664,7 +664,7 @@ let allStations={
 		"country": "sg",
 		"background": "white",
 		"fav": true,
-		"url": "https://28153.live.streamtheworld.com/ONE_FM_913.mp3",
+		"url": "https://28093.live.streamtheworld.com/ONE_FM_913.mp3",
 		"logo": "https://www.onefm.sg/wp-content/assets/3/img/NAV_01_Logo_913-new.svg",
 		"stream": "https://np.tritondigital.com/public/nowplaying?mountName=ONE_FM_913AAC&numberToFetch=1&eventType=track",
 		"streamType": false
@@ -688,8 +688,8 @@ let allStations={
 		"fav": false,
 		"url": "https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3",
 		"logo": "https://energy.ch/ech-new/images/ech/apple-touch-icon.png",
-		"stream": null,
-		"streamType": false
+		"stream": "https://energy.ch/api/channels/zuerich/playouts",
+		"streamType": true
 	},
 	"q_fm_102": {
 		"id": "q_fm_102",
@@ -697,7 +697,7 @@ let allStations={
 		"country": "ie",
 		"background": "white",
 		"fav": true,
-		"url": "https://wg.cdn.tibus.net/q102MP3128",
+		"url": "https://onic.dublin.live.stream.broadcasting.news/stream-q102",
 		"logo": "https://mm.aiircdn.com/614/5d5fcba7241c4.png",
 		"stream": "https://www.q102.ie/radiofeed_request/?a=newer",
 		"streamType": true
@@ -710,28 +710,6 @@ let allStations={
 		"fav": false,
 		"url": "https://streamingr.broadcastradio.com:10295/wrs",
 		"logo": "https://mmo.aiircdn.com/29/61eaca66a914b.png",
-		"stream": null,
-		"streamType": false
-	},
-	"rosj_fm_96": {
-		"id": "rosj_fm_96",
-		"name": "Rock of St George Utah",
-		"country": "us",
-		"background": "dark",
-		"fav": false,
-		"url": "https://ice41.securenetsystems.net/KCLSHD2",
-		"logo": "https://rockstgeorge.com/wp-content/uploads/2019/03/logo-96X-rock-dark-light.png",
-		"stream": "https://streamdb4web.securenetsystems.net/player_status_update/KCLSHD2_history.xml",
-		"streamType": false
-	},
-	"sunny_fm_102": {
-		"id": "sunny_fm_102",
-		"name": "Sunny FM 102",
-		"country": "us",
-		"background": "white",
-		"fav": false,
-		"url": "https://ice10.securenetsystems.net/KCLS",
-		"logo": "https://mysunny1015.com/wp-content/uploads/2019/03/logo-kcls-sunny-1015-dark-light.png",
 		"stream": null,
 		"streamType": false
 	},
@@ -852,7 +830,7 @@ let allStations={
 		"background": "white",
 		"fav": false,
 		"url": "https://26363.live.streamtheworld.com/WBBRAMAAC48.aac",
-		"logo": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Bloomberg_Radio.png",
+		"logo": " https://assets.bbhub.io/media/sites/16/2022/03/amber-512x512-1-150x150.png",
 		"stream": null,
 		"streamType": false
 	},
@@ -961,9 +939,9 @@ let allStations={
 		"country": "de",
 		"background": "classic",
 		"fav": false,
-		"url": "https://edge04.streams.klassikradio.de/klassikradio-deutschland",
-		"logo": "https://upload.klassikradio.de/production/static/1659521233035/img/72ebcae.png",
-		"stream": "https://api.iris-next.radiorepo.io/stream-service/696fff20-62da-474f-a092-4898d41776f3?",
+		"url": "https://klassikr.streamabc.net/klr-krdnational-aac-128-3888428",
+		"logo": "https://api.streamabc.net/coverimages/cover/krrotid/436514/klassikr-live?default=channelLogo%2FKR_Logo_Player_2.0_256x256.png&w=600&h=600",
+		"stream": "wss://api.streamabc.net/metadata/channel/klassikr-live?metaid=47c200b0-9593-4b4b-98ca-3d2057686f77 ",
 		"streamType": false
 	},
 	"lounge_fm_936": {
@@ -1025,7 +1003,7 @@ let allStations={
 		"id": "sublime_nl",
 		"name": "Sublime",
 		"country": "nl",
-		"background": "dark",
+		"background": "white",
 		"fav": false,
 		"url": "https://22553.live.streamtheworld.com/SUBLIME.mp3?dist=sublime_website",
 		"logo": "https://api.radioveronica.nl/media/iuapdvow/sublime-new-website-programmas_1-1_logo.png?format=webp",
@@ -1126,8 +1104,19 @@ let allStations={
 		"country": "be",
 		"background": "test-white",
 		"fav": false,
-		"url": "http://icecast.vrtcdn.be/stubru-high.mp3",
+		"url": "https://vrt.streamabc.net/vrt-studiobrussel-mp3-128-4409118",
 		"logo": "https://www.vrt.be/content/dam/vrtvideo/branding/logos/stubru/v3/primary.svg",
+		"stream": "https://www.vrt.be/vrtnu-api/graphql/public/v1",
+		"streamType": false
+	},
+	"vrt_mnm_bl": {
+		"id": "vrt_mnm_bl",
+		"name": "MNM",
+		"country": "be",
+		"background": "dark",
+		"fav": false,
+		"url": "http://icecast.vrtcdn.be/mnm-high.mp3",
+		"logo": "https://www.vrt.be/content/dam/vrtvideo/branding/logos/mnm/v2/color.svg",
 		"stream": "https://www.vrt.be/vrtnu-api/graphql/public/v1",
 		"streamType": false
 	},
@@ -1426,7 +1415,7 @@ let allStations={
 		"url": "https://listen.radioking.com/radio/256885/stream/301504",
 		"logo": "http://www.radioclassique.ca/upload/design/5d1cc4fcaad749.59987287.png",
 		"stream": "http://www.radioclassique.ca/cache/titreplayer4",
-		"streamType": false
+		"streamType": true
 	},
 	"radar_pt_978": {
 		"id": "radar_pt_978",
@@ -1438,17 +1427,6 @@ let allStations={
 		"logo": "https://radarlisboa.fm/wp-content/uploads/2016/02/logo_abril-1.png",
 		"stream": "https://radarlisboa.fm/avaplayer/radiotext.txt",
 		"streamType": true
-	},
-	"thamil_sevai_102_1_sl": {
-		"id": "thamil_sevai_102_1_sl",
-		"name": "Thamil Sevai 102.1",
-		"country": "lk",
-		"background": "test-white",
-		"fav": false,
-		"url": "http://220.247.227.6:8000/Tnsstream",
-		"logo": "https://www.slbc.lk/images/top-logo.png",
-		"stream": null,
-		"streamType": false
 	},
 	"radio_hindi_tarang_in": {
 		"id": "radio_hindi_tarang_in",
