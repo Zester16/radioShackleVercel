@@ -190,14 +190,38 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
 
         parsedData.host=showDetails.moderator.name
       }
-      else if(stationName==="derti_athens_gr"){
-        let nowPlaying=rep.data.audioPlayer.stream.content.filter((pl)=>{if(pl["row_id"]===-2){return}})[0]
+      else if(stationName==="radio_hindi_tarang_in"){
+        let nowPlaying=rep.data.radioCallback
+        //console.log(nowPlaying);
         let showDetails=rep.data.audioPlayer.shows.current
         parsedData.artist = nowPlaying.artist
         parsedData.title=nowPlaying.title
         parsedData.songImgUrl=nowPlaying.image
 
         parsedData.host=showDetails.moderator.name
+      }
+      else if(stationName==="nation_radio_uk"){
+          let nowPlaying =rep["NationUK"]
+          parsedData.artist = nowPlaying.artist
+          parsedData.title=nowPlaying.title
+          parsedData.songImgUrl=picUrl
+      }
+      //TODO: Update below
+      // else if(stationName==="nova_coop_dk"){
+      //     let nowPlaying =rep
+      //     parsedData.artist = nowPlaying.ArtistName
+      //     parsedData.title=nowPlaying.TrackTitle
+      //     parsedData.songImgUrl=nowPlaying.ImageUrl
+      //
+      // }
+      else if(stationName==="nova_coop_dk" || stationName==="my_rock_dk"){
+          let nowPlaying =rep[0].stationNowPlaying
+          let showDetails = rep[0].stationOnAir
+          parsedData.artist = nowPlaying.nowPlayingArtist
+          parsedData.title=nowPlaying.nowPlayingTrack
+          parsedData.songImgUrl=nowPlaying.nowPlayingImage
+
+          parsedData.showName=showDetails.episodeTitle
       }
     }
 
