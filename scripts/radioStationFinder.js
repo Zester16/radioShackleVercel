@@ -191,14 +191,14 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.host=showDetails.moderator.name
       }
       else if(stationName==="radio_hindi_tarang_in"){
-        let nowPlaying=rep.data.radioCallback
-        //console.log(nowPlaying);
-        let showDetails=rep.data.audioPlayer.shows.current
-        parsedData.artist = nowPlaying.artist
-        parsedData.title=nowPlaying.title
-        parsedData.songImgUrl=nowPlaying.image
+        const bracket = rep.indexOf("(")
+        const rawPlay = rep.slice(bracket+1,rep.length-1)
+        let nowPlaying=JSON.parse(rawPlay)
+        //console.log(nowPlaying)
+        parsedData.artist = nowPlaying.servertitle
+        parsedData.title=nowPlaying.songtitle
+        parsedData.songImgUrl=picUrl
 
-        parsedData.host=showDetails.moderator.name
       }
       else if(stationName==="nation_radio_uk"){
           let nowPlaying =rep["NationUK"]
@@ -222,6 +222,14 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
           parsedData.songImgUrl=nowPlaying.nowPlayingImage
 
           parsedData.showName=showDetails.episodeTitle
+      }
+      else if(stationName="nogoum_100_6_eyp"){
+          let nowPlaying = rep.now_playing.song
+
+          parsedData.artist = nowPlaying.artist
+          parsedData.title=nowPlaying.title
+          parsedData.songImgUrl=nowPlaying.art
+
       }
     }
 
