@@ -207,13 +207,13 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
           parsedData.songImgUrl=picUrl
       }
       //TODO: Update below
-      // else if(stationName==="nova_coop_dk"){
-      //     let nowPlaying =rep
-      //     parsedData.artist = nowPlaying.ArtistName
-      //     parsedData.title=nowPlaying.TrackTitle
-      //     parsedData.songImgUrl=nowPlaying.ImageUrl
-      //
-      // }
+      else if(stationName==="nova_coop_dk"){
+          let nowPlaying =rep
+          parsedData.artist = nowPlaying.ArtistName
+          parsedData.title=nowPlaying.TrackTitle
+          parsedData.songImgUrl=nowPlaying.ImageUrl
+
+      }
       else if(stationName==="nova_coop_dk" || stationName==="my_rock_dk"){
           let nowPlaying =rep[0].stationNowPlaying
           let showDetails = rep[0].stationOnAir
@@ -223,13 +223,19 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
 
           parsedData.showName=showDetails.episodeTitle
       }
-      else if(stationName="nogoum_100_6_eyp"){
-          let nowPlaying = rep.now_playing.song
+      else if(stationName==="nogoum_100_6_eyp"){
+          let nowPlaying = rep.now_playing?.song
 
           parsedData.artist = nowPlaying.artist
           parsedData.title=nowPlaying.title
           parsedData.songImgUrl=nowPlaying.art
 
+      }
+      else if(stationName==="radio_klassic_step_at"){
+        let nowPlaying = rep.trackData
+        parsedData.artist = nowPlaying.composer
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=picUrl
       }
     }
 
