@@ -236,7 +236,19 @@ async function getDatafromStream(stationName,streamUrl,picUrl,streamType){
         parsedData.artist = nowPlaying.composer
         parsedData.title=nowPlaying.title
         parsedData.songImgUrl=picUrl
-      }
+     }
+     else if(stationName==="rsc_swiss"){
+        let nowPlaying = rep.channel.playingnow.current.metadata
+        parsedData.artist = nowPlaying.artist
+        parsedData.title=nowPlaying.title
+        parsedData.songImgUrl=picUrl
+    }
+    else if(stationName==="radar_pt_978"){
+       let nowPlaying = rep.split("-")
+       parsedData.artist = nowPlaying[0]
+       parsedData.title=nowPlaying[1]
+       parsedData.songImgUrl=picUrl
+   }
     }
 
     return parsedData
